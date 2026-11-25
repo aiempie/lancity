@@ -19,6 +19,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Routing & Navigation Conventions
 
 - **Tập trung quản lý đường dẫn**: Tất cả các đường dẫn URL trong ứng dụng phải được khai báo và quản lý tập trung trong file `@/data/linkto.ts`.
+- **Tài nguyên tĩnh công khai**: Đặt tất cả ảnh, font, CSS, JavaScript và các file tĩnh công khai mới trong `public/assets/`. Truy cập chúng qua `/assets/...` và dùng `linkto.assets` làm đường dẫn gốc trong mã ứng dụng. Proxy đã cho qua toàn bộ `/assets/`, nên không thêm từng file vào `publicPaths`. Với file metadata cần URL ở gốc, như `/robots.txt` hoặc `/favicon.ico`, dùng quy ước metadata của App Router và khai báo riêng URL công khai đó trong `publicPaths`.
 - **Component Link tùy chỉnh**: Khi tạo liên kết chuyển trang (Navigation), bắt buộc phải import và sử dụng custom component `<Link>` từ `@/components/ui/custom/link` (với `href={linkto.<key>}`) thay vì import trực tiếp từ `next/link`.
 - **Hook điều hướng Client**: Khi thực hiện điều hướng chuyển trang trong mã Client (Imperative Routing), phải import `useRouter` từ `@/hooks/use-router` thay vì `next/navigation`.
 

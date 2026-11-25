@@ -1,0 +1,41 @@
+{
+  "language": "Language",
+  "auth": {
+    "login": "Sign in",
+    "register": "Create an account",
+    "account": "Account",
+    "signOut": "Sign out",
+    "name": "Display name",
+    "username": "Username",
+    "email": "Email",
+    "identifier": "Username or email",
+    "password": "Password",
+    "continueWithGoogle": "Continue with Google",
+    "linkGoogle": "Link Google",
+    "googleLinked": "Google account linked",
+    "alreadyHaveAccount": "Already have an account?",
+    "needAccount": "New to Lancity?",
+    "workspaces": "Workspaces"
+  },
+  "errors": {
+    "invalidForm": "Check the information you entered and try again.",
+    "invalidEmail": "Enter a valid email address.",
+    "invalidUsername": "Use 3–30 letters, numbers, periods, or underscores for your username.",
+    "invalidIdentifier": "Enter a valid username or email address.",
+    "requiredName": "Enter a display name.",
+    "longName": "Your display name is too long.",
+    "requiredPassword": "Enter your password.",
+    "shortPassword": "Use at least 8 characters for your password.",
+    "longPassword": "Your password is too long.",
+    "invalidCredentials": "Incorrect username, email, or password. Try again.",
+    "registerFailed": "We couldn't create your account right now. Try again.",
+    "registerConflict": "We couldn't create your account. Check your details or try a different username and email.",
+    "connectionFailed": "We couldn't connect. Try again.",
+    "googleLoginFailed": "We couldn't sign you in with Google. Try again.",
+    "googleConnectionFailed": "We couldn't connect to Google. Try again.",
+    "googleAccountNotLinked": "An account already uses this email. Sign in with your password, then link Google from your account page.",
+    "googleLinkFailed": "We couldn't link Google. Try again.",
+    "googleLinkSameEmail": "We couldn't link Google. Use a Google account with the same email address.",
+    "signOutFailed": "We couldn't sign you out. Try again."
+  }
+}

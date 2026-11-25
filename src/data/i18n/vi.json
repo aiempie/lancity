@@ -1,0 +1,41 @@
+{
+  "language": "Ngôn ngữ",
+  "auth": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "account": "Tài khoản",
+    "signOut": "Đăng xuất",
+    "name": "Tên hiển thị",
+    "username": "Tên đăng nhập",
+    "email": "Email",
+    "identifier": "Tên đăng nhập hoặc email",
+    "password": "Mật khẩu",
+    "continueWithGoogle": "Tiếp tục với Google",
+    "linkGoogle": "Liên kết Google",
+    "googleLinked": "Đã liên kết Google",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "needAccount": "Chưa có tài khoản?",
+    "workspaces": "Không gian làm việc"
+  },
+  "errors": {
+    "invalidForm": "Kiểm tra thông tin đã nhập và thử lại.",
+    "invalidEmail": "Email không hợp lệ.",
+    "invalidUsername": "Tên đăng nhập cần có 3–30 ký tự gồm chữ cái, số, dấu chấm hoặc dấu gạch dưới.",
+    "invalidIdentifier": "Nhập tên đăng nhập hoặc email hợp lệ.",
+    "requiredName": "Nhập tên hiển thị.",
+    "longName": "Tên hiển thị quá dài.",
+    "requiredPassword": "Nhập mật khẩu.",
+    "shortPassword": "Mật khẩu cần có ít nhất 8 ký tự.",
+    "longPassword": "Mật khẩu quá dài.",
+    "invalidCredentials": "Tên đăng nhập, email hoặc mật khẩu không đúng. Vui lòng thử lại.",
+    "registerFailed": "Không thể đăng ký lúc này. Vui lòng thử lại.",
+    "registerConflict": "Không thể đăng ký. Kiểm tra thông tin hoặc thử tên đăng nhập và email khác.",
+    "connectionFailed": "Không thể kết nối. Vui lòng thử lại.",
+    "googleLoginFailed": "Không thể đăng nhập bằng Google. Vui lòng thử lại.",
+    "googleConnectionFailed": "Không thể kết nối với Google. Vui lòng thử lại.",
+    "googleAccountNotLinked": "Email này đã có tài khoản. Hãy đăng nhập bằng mật khẩu rồi liên kết Google trong trang tài khoản.",
+    "googleLinkFailed": "Không thể liên kết Google. Vui lòng thử lại.",
+    "googleLinkSameEmail": "Không thể liên kết Google. Hãy dùng tài khoản Google có cùng email.",
+    "signOutFailed": "Không thể đăng xuất. Vui lòng thử lại."
+  }
+}
