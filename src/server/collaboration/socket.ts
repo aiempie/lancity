@@ -7,20 +7,44 @@ import { liveLog } from '@/server/collaboration/logger'
 import { getCollaborationStub, isAllowedOrigin, type LiveEnv } from '@/server/collaboration/runtime'
 import { liveConnectionQuerySchema, liveContextHeaders } from '@/types/content/p4-live-schema'
 
+/** How long a refused socket stays open when the client does not close it after the `PermissionDenied` message. */
+const DENIED_SOCKET_TTL_MS = 5 * 60_000
+
 /**
  * A socket that exists only to refuse a client the Hocuspocus way: the provider sends its token first, and the answer is a
- * `PermissionDenied` message followed by a close. Refusing at the HTTP upgrade would send the provider into a reconnect loop.
+ * `PermissionDenied` message. Refusing at the HTTP upgrade would send the provider into a reconnect loop.
+ *
+ * Lancity: binary frames arrive as `Blob` from compatibility date 2026-03-17 (`websocket_standard_binary_type`), so the
+ * socket asks for `ArrayBuffer` before `accept()`; otherwise the token is never read and the client gets no refusal.
+ * Like the Hocuspocus server, the socket also stays open after the refusal instead of closing at once, which made the
+ * provider reconnect every second. The client closes it after `onAuthenticationFailed`; otherwise it closes after a while.
  */
 function denySocket(reason: string, status: { code: number; reason: string } = CloseEvents.Forbidden): Response {
   const pair = new WebSocketPair()
   const [client, server] = [pair[0], pair[1]]
+  server.binaryType = 'arraybuffer'
   server.accept()
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const close = () => {
+    clearTimeout(timer)
+    try {
+      server.close(status.code, status.reason)
+    } catch {
+      // Already closed.
+    }
+  }
+  let refused = false
   server.addEventListener('message', event => {
+    // The provider sends its sync and awareness messages right after the token: ignore them once refused.
+    if (refused) return
     const data = event.data instanceof ArrayBuffer ? new Uint8Array(event.data) : null
     const auth = data ? readAuthToken(data) : null
-    if (auth) server.send(messages.permissionDenied(auth.documentName, reason))
-    server.close(status.code, status.reason)
+    if (!auth) return close()
+    refused = true
+    server.send(messages.permissionDenied(auth.documentName, reason))
+    timer = setTimeout(close, DENIED_SOCKET_TTL_MS)
   })
+  server.addEventListener('close', close)
   return new Response(null, { status: 101, webSocket: client })
 }
 

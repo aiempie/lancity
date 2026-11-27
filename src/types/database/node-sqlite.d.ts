@@ -4,7 +4,7 @@ declare module 'node:sqlite' {
   type SQLiteRow = Record<string, SQLiteValue>
 
   export class DatabaseSync {
-    constructor(path: string)
+    constructor(path: string, options?: { readOnly?: boolean; timeout?: number })
     exec(sql: string): void
     close(): void
     prepare(sql: string): {

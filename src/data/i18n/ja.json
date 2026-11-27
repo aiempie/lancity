@@ -1,0 +1,277 @@
+{
+  "language": "言語",
+  "auth": {
+    "login": "ログイン",
+    "register": "アカウントを作成",
+    "account": "アカウント",
+    "signOut": "ログアウト",
+    "name": "表示名",
+    "username": "ユーザー名",
+    "email": "メールアドレス",
+    "identifier": "ユーザー名またはメールアドレス",
+    "password": "パスワード",
+    "continueWithGoogle": "Googleで続行",
+    "linkGoogle": "Googleを連携",
+    "googleLinked": "Googleアカウントを連携済み",
+    "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+    "needAccount": "Lancityは初めてですか？",
+    "workspaces": "ワークスペース"
+  },
+  "errors": {
+    "invalidForm": "入力内容を確認して、もう一度お試しください。",
+    "invalidEmail": "有効なメールアドレスを入力してください。",
+    "invalidUsername": "ユーザー名は3〜30文字の英字、数字、ピリオド、アンダースコアで入力してください。",
+    "invalidIdentifier": "有効なユーザー名またはメールアドレスを入力してください。",
+    "requiredName": "表示名を入力してください。",
+    "longName": "表示名が長すぎます。",
+    "requiredPassword": "パスワードを入力してください。",
+    "shortPassword": "パスワードは8文字以上で入力してください。",
+    "longPassword": "パスワードが長すぎます。",
+    "invalidCredentials": "ユーザー名、メールアドレス、またはパスワードが正しくありません。もう一度お試しください。",
+    "registerFailed": "現在アカウントを作成できません。もう一度お試しください。",
+    "registerConflict": "アカウントを作成できませんでした。入力内容を確認するか、別のユーザー名とメールアドレスをお試しください。",
+    "connectionFailed": "接続できませんでした。もう一度お試しください。",
+    "googleLoginFailed": "Googleでログインできませんでした。もう一度お試しください。",
+    "googleConnectionFailed": "Googleに接続できませんでした。もう一度お試しください。",
+    "googleAccountNotLinked": "このメールアドレスのアカウントはすでに存在します。パスワードでログインし、アカウントページでGoogleを連携してください。",
+    "googleLinkFailed": "Googleを連携できませんでした。もう一度お試しください。",
+    "googleLinkSameEmail": "Googleを連携できませんでした。同じメールアドレスのGoogleアカウントを使用してください。",
+    "signOutFailed": "ログアウトできませんでした。もう一度お試しください。"
+  },
+  "editor": {
+    "emojiPicker": {
+      "search": "検索",
+      "emoji": "絵文字",
+      "icon": "アイコン",
+      "hexInput": "HEXカラーを入力",
+      "contrastNotice": "十分なコントラストになるよう色が調整されます。"
+    },
+    "slashCommands": {
+      "sections": {
+        "colors": "文字色",
+        "backgroundColors": "背景色"
+      },
+      "text": {
+        "title": "テキスト",
+        "description": "プレーンテキストで入力を始めます。"
+      },
+      "h1": {
+        "title": "見出し1",
+        "description": "大きなセクション見出しです。"
+      },
+      "h2": {
+        "title": "見出し2",
+        "description": "中くらいのセクション見出しです。"
+      },
+      "h3": {
+        "title": "見出し3",
+        "description": "小さなセクション見出しです。"
+      },
+      "h4": {
+        "title": "見出し4",
+        "description": "小さなセクション見出しです。"
+      },
+      "h5": {
+        "title": "見出し5",
+        "description": "小さなセクション見出しです。"
+      },
+      "h6": {
+        "title": "見出し6",
+        "description": "小さなセクション見出しです。"
+      },
+      "numberedList": {
+        "title": "番号付きリスト",
+        "description": "番号付きリストを作成します。"
+      },
+      "bulletedList": {
+        "title": "箇条書きリスト",
+        "description": "箇条書きリストを作成します。"
+      },
+      "todoList": {
+        "title": "ToDoリスト",
+        "description": "ToDoリストを作成します。"
+      },
+      "table": {
+        "title": "表",
+        "description": "表を作成します。"
+      },
+      "quote": {
+        "title": "引用",
+        "description": "引用を記録します。"
+      },
+      "code": {
+        "title": "コード",
+        "description": "コードスニペットを記録します。"
+      },
+      "callout": {
+        "title": "コールアウト",
+        "description": "コールアウトを挿入します。"
+      },
+      "divider": {
+        "title": "区切り線",
+        "description": "ブロックを区切ります。"
+      },
+      "emoji": {
+        "title": "絵文字",
+        "description": "絵文字を挿入します。"
+      },
+      "image": {
+        "title": "画像",
+        "description": "画像を挿入します。"
+      },
+      "defaultTextColor": "デフォルト",
+      "defaultBackground": "デフォルトの背景",
+      "changeTextColor": "文字色を変更",
+      "changeBackgroundColor": "背景色を変更",
+      "workItem": {
+        "title": "作業項目",
+        "description": "作業項目を埋め込みます。"
+      }
+    },
+    "blocks": {
+      "text": "テキスト",
+      "heading1": "見出し1",
+      "heading2": "見出し2",
+      "heading3": "見出し3",
+      "heading4": "見出し4",
+      "heading5": "見出し5",
+      "heading6": "見出し6",
+      "bulletedList": "箇条書きリスト",
+      "numberedList": "番号付きリスト",
+      "todoList": "ToDoリスト",
+      "quote": "引用",
+      "code": "コード",
+      "table": "表",
+      "image": "画像",
+      "divider": "区切り線",
+      "multiple": "複数"
+    },
+    "marks": {
+      "bold": "太字",
+      "italic": "斜体",
+      "underline": "下線",
+      "strikethrough": "取り消し線",
+      "link": "リンク",
+      "color": "色",
+      "backgroundColor": "背景色",
+      "textAlign": "配置"
+    },
+    "colors": {
+      "gray": "グレー",
+      "peach": "ピーチ",
+      "pink": "ピンク",
+      "orange": "オレンジ",
+      "green": "グリーン",
+      "lightBlue": "ライトブルー",
+      "darkBlue": "ダークブルー",
+      "purple": "パープル",
+      "color": "色",
+      "textColors": "文字色",
+      "backgroundColors": "背景色",
+      "textColorOf": "文字色：{color}",
+      "backgroundColorOf": "背景色：{color}",
+      "clearTextColor": "文字色をクリア",
+      "clearBackgroundColor": "背景色をクリア"
+    },
+    "alignment": {
+      "group": "テキストの配置",
+      "left": "左揃え",
+      "center": "中央揃え",
+      "right": "右揃え"
+    },
+    "fonts": {
+      "sansSerif": "ゴシック",
+      "serif": "明朝",
+      "mono": "等幅"
+    },
+    "link": {
+      "label": "リンク",
+      "url": "リンクのURL",
+      "placeholder": "リンクを入力または貼り付け",
+      "remove": "リンクを削除",
+      "apply": "リンクを適用",
+      "copy": "リンクをコピー",
+      "edit": "リンクを編集",
+      "urlLabel": "URL",
+      "urlPlaceholder": "URLを入力または貼り付け",
+      "textLabel": "テキスト",
+      "textPlaceholder": "表示するテキストを入力",
+      "invalidUrl": "有効なURLを入力してください。"
+    },
+    "toolbar": {
+      "formatting": "書式ツールバー",
+      "textFormatting": "テキストの書式"
+    },
+    "blockMenu": {
+      "delete": "削除",
+      "duplicate": "複製",
+      "fitToWidth": "幅に合わせる"
+    },
+    "table": {
+      "insertLeft": "左に挿入",
+      "insertRight": "右に挿入",
+      "insertAbove": "上に挿入",
+      "insertBelow": "下に挿入",
+      "duplicate": "複製",
+      "clearContents": "内容をクリア",
+      "delete": "削除",
+      "headerColumn": "見出し列",
+      "headerRow": "見出し行",
+      "columnOptions": "列のオプション",
+      "rowOptions": "行のオプション",
+      "insertColumns": "列を挿入",
+      "insertRows": "行を挿入"
+    },
+    "image": {
+      "download": "ダウンロード",
+      "downloadImage": "画像をダウンロード",
+      "align": "配置",
+      "alignImage": "画像の配置",
+      "alignment": "画像の配置",
+      "alignImageTo": "画像の配置：{alignment}",
+      "viewFullScreen": "全画面で表示",
+      "viewImageFullScreen": "画像を全画面で表示",
+      "controls": "画像の操作",
+      "viewer": "全画面画像ビューアー",
+      "closeViewer": "画像ビューアーを閉じる",
+      "preview": "プレビュー",
+      "viewerControls": "画像ビューアーの操作",
+      "zoom": "画像のズーム",
+      "zoomOut": "縮小",
+      "zoomIn": "拡大",
+      "openInNewTab": "画像を新しいタブで開く",
+      "errorLoading": "画像を読み込めませんでした",
+      "uploading": "アップロード中…",
+      "dropHere": "ここに画像をドロップ",
+      "add": "画像を追加",
+      "choose": "画像を選択",
+      "retry": "再試行",
+      "retryDuplication": "画像のコピーを再試行",
+      "noFile": "ファイルが選択されていません。アップロードするファイルを選択してください。",
+      "invalidType": "このファイル形式には対応していません。",
+      "tooLarge": "ファイルが大きすぎます。{size} MB未満のファイルを選択してください。"
+    },
+    "mention": {
+      "loading": "読み込み中…",
+      "noResults": "結果がありません",
+      "unknownUser": "不明なユーザー"
+    },
+    "title": {
+      "placeholder": "無題"
+    },
+    "ai": {
+      "handle": "AIの操作"
+    },
+    "placeholder": {
+      "default": "「/」でコマンドを表示…",
+      "heading": "見出し{level}"
+    },
+    "code": {
+      "copy": "コードをコピー",
+      "copied": "コードをコピーしました"
+    },
+    "emoji": {
+      "noResults": "絵文字が見つかりません"
+    }
+  }
+}

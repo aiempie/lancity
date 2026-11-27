@@ -6,11 +6,12 @@ export const defaultLocale: Locale = 'vi'
 
 export const languages = {
   vi: 'Tiếng Việt',
-  en: 'English'
+  en: 'English',
+  ja: '日本語'
 } satisfies Record<Locale, string>
 
 export function resolveLocale(value: string | undefined): Locale {
-  return value === 'en' ? 'en' : defaultLocale
+  return value === 'en' || value === 'ja' ? value : defaultLocale
 }
 
 export function getErrorMessage(t: ReturnType<typeof useTranslations<'errors'>>, key: string) {

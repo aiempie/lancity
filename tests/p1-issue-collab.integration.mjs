@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 // Requires issueCollabRoutes (src/server/api/v1/routes/issue-collab.ts) mounted before issuesRoutes.
 const base = new URL(process.env.LANCITY_TEST_URL ?? 'http://localhost:4198')

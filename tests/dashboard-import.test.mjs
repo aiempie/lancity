@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { convertDump } from '../scripts/plane-import/convert.ts'
 import { renderSql } from '../scripts/plane-import/cli.ts'
 import { IdMap } from '../scripts/plane-import/id-map.ts'

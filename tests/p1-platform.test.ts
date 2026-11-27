@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { Hono } from 'hono'
 import { SQLiteSyncDialect } from 'drizzle-orm/sqlite-core'
 import { handleApiError } from '../src/server/api/v1/errors'

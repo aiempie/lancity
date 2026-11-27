@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { sanitizeCsvRow, sanitizeCsvValue } from '../src/server/export/csv-utils'
 
 test('spreadsheet exports quote Plane formula triggers and preserve scalar types', () => {

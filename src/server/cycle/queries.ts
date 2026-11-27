@@ -1,5 +1,6 @@
 import { sql, type SQL } from 'drizzle-orm'
 import type { LancityDb } from '@/types/database/schema'
+import { numericEstimateSql } from '@/server/estimate/numeric'
 
 /** Issues Plane counts in cycle annotations: not deleted, archived or draft. Alias `i`. */
 export const ISSUE_COUNTABLE = sql`i.deleted_at is null and i.archived_at is null and i.is_draft = 0`
@@ -11,7 +12,7 @@ export type CycleSqlRow = Record<string, unknown>
 /** Sum of numeric estimate points of the live issues of cycle `c`, optionally limited to one state group. */
 function pointsOf(group: string | null): SQL {
   const only = group ? sql` and s."group" = ${group}` : sql``
-  return sql`(select coalesce(sum(cast(ep.value as real)), 0) from cycle_issues pc
+  return sql`(select coalesce(sum(${numericEstimateSql('ep.value')}), 0) from cycle_issues pc
     join issues i on i.id = pc.issue_id and i.project_id = pc.project_id
     join estimate_points ep on ep.id = i.estimate_point_id
     join estimates e on e.id = ep.estimate_id and e.type = 'points'

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomBytes, randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 import { createInstanceAdmin } from '../scripts/plane/create-instance-admin.ts'
 
 const base = new URL(process.env.LANCITY_TEST_URL ?? 'http://localhost:4198')

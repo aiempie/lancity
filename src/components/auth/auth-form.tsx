@@ -162,7 +162,7 @@ export function AuthForm({
       {!registering && (
         <p className='text-sm'>
           <Link className='text-primary underline' href={`${linkto.login}?forgot=1`}>
-            {authMessages[locale === 'en' ? 'en' : 'vi'].forgotPassword}
+            {authMessages[locale].forgotPassword}
           </Link>
         </p>
       )}

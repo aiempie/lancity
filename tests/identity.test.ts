@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { sessionUserIdSchema } from '../src/types/auth/schema'
 import { onboardSchema, updateCurrentUserSchema, updateProfileSchema } from '../src/types/identity/schema'
 

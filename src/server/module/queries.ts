@@ -5,6 +5,8 @@ import { sanitizeOrderBy } from '@/server/issue/filter'
 import { LIVE_ISSUES } from '@/server/issue/list'
 import type { LancityDb } from '@/types/database/schema'
 import { MODULE_ORDER_BY_ALLOWLIST } from '@/types/planning/p2-module-schema'
+import { numericEstimateExpr, numericEstimateOrZeroSql, numericEstimateSql } from '@/server/estimate/numeric'
+
 
 /** A `modules` row with the computed columns of `moduleSelect`, snake_case as SQLite returns it. */
 export type ModuleRow = Record<string, unknown>
@@ -16,7 +18,7 @@ const countGroup = (group: (typeof STATE_GROUPS)[number]) =>
   sql.raw(`sum(case when s."group" = '${group}' then 1 else 0 end) as ${group}_issues`)
 const pointsGroup = (group: (typeof STATE_GROUPS)[number]) =>
   sql.raw(
-    `sum(case when e.type = 'points' and s."group" = '${group}' then cast(ep.value as real) else 0 end) as ${group}_estimate_points`
+    `sum(case when e.type = 'points' and s."group" = '${group}' then coalesce(${numericEstimateExpr('ep.value')}, 0) else 0 end) as ${group}_estimate_points`
   )
 
 /**
@@ -28,7 +30,7 @@ export function moduleStatsJoin(scope: SQL) {
   return sql`left join (
     select mi.module_id as module_id, count(*) as total_issues,
       ${sql.join(STATE_GROUPS.map(countGroup), sql`, `)},
-      sum(case when e.type = 'points' then cast(ep.value as real) else 0 end) as total_estimate_points,
+      sum(case when e.type = 'points' then ${numericEstimateOrZeroSql('ep.value')} else 0 end) as total_estimate_points,
       ${sql.join(STATE_GROUPS.map(pointsGroup), sql`, `)}
     from module_issues mi
     join issues on issues.id = mi.issue_id
@@ -202,7 +204,7 @@ export async function queryModuleDistribution(
   moduleId: number,
   kind: 'issues' | 'points'
 ): Promise<{ assignees: Distribution[]; labels: Distribution[] }> {
-  const value = sql`cast(ep.value as real)`
+  const value = numericEstimateSql('ep.value')
   const measures =
     kind === 'issues'
       ? sql`sum(case when ${notArchivedNotDraft} then 1 else 0 end) as total_issues,
@@ -265,7 +267,7 @@ export async function queryModuleBurndown(
   if (!(days > 0)) return chart
   const rows = await db.all<{ day: string | null; amount: number }>(
     plotType === 'points'
-      ? sql`select date(issues.completed_at / 1000, 'unixepoch') as day, cast(ep.value as real) as amount
+      ? sql`select date(issues.completed_at / 1000, 'unixepoch') as day, ${numericEstimateOrZeroSql('ep.value')} as amount
           ${moduleIssuesFrom(moduleId, scope.projectId)} and issues.estimate_point_id is not null`
       : sql`select date(issues.completed_at / 1000, 'unixepoch') as day, 1 as amount
           ${moduleIssuesFrom(moduleId, scope.projectId)}`

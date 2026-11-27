@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { createHmac } from 'node:crypto'
-import test from 'node:test'
+import { test } from 'vitest'
 import { drizzle } from 'drizzle-orm/d1'
 import { openTargetDatabase } from '../scripts/plane-import/target-schema.ts'
 import * as schema from '../src/db/schema.ts'

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 // Requires assetsRoutes (mounted at /workspaces) and userAssetsRoutes (mounted at /assets) from
 // src/server/api/v1/routes/assets.ts, and the R2 binding ASSET_BUCKET (local simulation).

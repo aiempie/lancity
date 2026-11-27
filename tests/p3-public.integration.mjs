@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 // Requires publicRoutes and projectPublicationRoutes (src/server/api/v1/routes/public.ts) to be mounted at
 // /public and /workspaces/:slug/projects/:projectId, and the R2 binding ASSET_BUCKET for the asset case.

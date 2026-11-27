@@ -1,0 +1,722 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "id": "b-heading-1",
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Kế hoạch "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Q3"
+        },
+        {
+          "type": "text",
+          "text": " / 第3四半期 🚀"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "id": "b-paragraph-marks",
+        "textAlign": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Plain "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "bold"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "text": "italic"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "underline"
+            }
+          ],
+          "text": "underline"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "strike"
+            }
+          ],
+          "text": "strike"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ],
+          "text": "a < b && c"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            },
+            {
+              "type": "italic"
+            }
+          ],
+          "text": "both"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "link",
+              "attrs": {
+                "href": "https://lancity.example/docs?a=1&b=\"2\"",
+                "target": "_blank",
+                "rel": "noopener noreferrer nofollow",
+                "class": "text-accent-secondary underline underline-offset-[3px] hover:text-accent-primary transition-colors cursor-pointer"
+              }
+            }
+          ],
+          "text": "a link"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "customColor",
+              "attrs": {
+                "color": "peach",
+                "backgroundColor": "light-blue"
+              }
+            }
+          ],
+          "text": "preset colors"
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "customColor",
+              "attrs": {
+                "color": "#d13415",
+                "backgroundColor": null
+              }
+            }
+          ],
+          "text": "hex color"
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "text": "after <break> & \"quotes\" "
+        },
+        {
+          "type": "emoji",
+          "attrs": {
+            "name": "smile"
+          }
+        },
+        {
+          "type": "text",
+          "text": " hi "
+        },
+        {
+          "type": "mention",
+          "attrs": {
+            "id": "mention-1",
+            "entity_identifier": "3",
+            "entity_name": "user_mention"
+          }
+        },
+        {
+          "type": "text",
+          "text": " done"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "id": "b-paragraph-right",
+        "textAlign": "right"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Right aligned"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "id": "b-paragraph-empty",
+        "textAlign": null
+      }
+    },
+    {
+      "type": "bulletList",
+      "attrs": {
+        "id": "b-bullets"
+      },
+      "content": [
+        {
+          "type": "listItem",
+          "attrs": {
+            "id": "b-li-1"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "id": "b-li-1-p",
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "one"
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "attrs": {
+                "id": "b-bullets-nested"
+              },
+              "content": [
+                {
+                  "type": "listItem",
+                  "attrs": {
+                    "id": "b-li-1-1"
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "id": "b-li-1-1-p",
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "nested"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "attrs": {
+            "id": "b-li-2"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "id": "b-li-2-p",
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "two"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "attrs": {
+        "id": "b-ordered",
+        "start": 3,
+        "type": null
+      },
+      "content": [
+        {
+          "type": "listItem",
+          "attrs": {
+            "id": "b-oli-1"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "id": "b-oli-1-p",
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "third"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "taskList",
+      "attrs": {
+        "id": "b-tasks"
+      },
+      "content": [
+        {
+          "type": "taskItem",
+          "attrs": {
+            "id": "b-task-1",
+            "checked": true
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "id": "b-task-1-p",
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "done"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "taskItem",
+          "attrs": {
+            "id": "b-task-2",
+            "checked": false
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "id": "b-task-2-p",
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "todo"
+                }
+              ]
+            },
+            {
+              "type": "taskList",
+              "attrs": {
+                "id": "b-tasks-nested"
+              },
+              "content": [
+                {
+                  "type": "taskItem",
+                  "attrs": {
+                    "id": "b-task-2-1",
+                    "checked": false
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "id": "b-task-2-1-p",
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "subtask"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "blockquote",
+      "attrs": {
+        "id": "b-quote"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "attrs": {
+            "id": "b-quote-p",
+            "textAlign": null
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "A quote"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "id": "b-code",
+        "language": "typescript"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "const ok = a < b && c > d\n  return \"<x>\""
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule",
+      "attrs": {
+        "id": "b-hr"
+      }
+    },
+    {
+      "type": "table",
+      "attrs": {
+        "id": "b-table"
+      },
+      "content": [
+        {
+          "type": "tableRow",
+          "attrs": {
+            "background": null,
+            "textColor": null
+          },
+          "content": [
+            {
+              "type": "tableHeader",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": [200],
+                "background": "none"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "id": "b-th-1-p",
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Name"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableHeader",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": [150],
+                "background": "none"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "id": "b-th-2-p",
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "attrs": {
+            "background": "#fff4e5",
+            "textColor": "#1f2937"
+          },
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 2,
+                "rowspan": 1,
+                "colwidth": [200, 150],
+                "background": "#fde68a",
+                "textColor": "#7c2d12"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "id": "b-td-merged-p",
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Merged cell"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tableRow",
+          "attrs": {
+            "background": null,
+            "textColor": null
+          },
+          "content": [
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": [200],
+                "background": null,
+                "textColor": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "id": "b-td-a-p",
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableCell",
+              "attrs": {
+                "colspan": 1,
+                "rowspan": 1,
+                "colwidth": [150],
+                "background": null,
+                "textColor": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "id": "b-td-b-p",
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "b"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "imageComponent",
+      "attrs": {
+        "id": "b-image",
+        "src": "12",
+        "alt": null,
+        "title": null,
+        "width": "420px",
+        "height": "236px",
+        "aspectRatio": 1.7796610169491525,
+        "alignment": "center",
+        "status": "uploaded"
+      }
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "id": "b-legacy-image",
+        "src": "https://lancity.example/logo.png",
+        "alt": "Lancity logo",
+        "title": "Logo",
+        "width": "35%",
+        "height": null,
+        "aspectRatio": null,
+        "alignment": "left"
+      }
+    },
+    {
+      "type": "calloutComponent",
+      "attrs": {
+        "id": "b-callout",
+        "data-icon-color": "#6d7b8a",
+        "data-icon-name": "AlertCircle",
+        "data-emoji-unicode": "128161",
+        "data-emoji-url": "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4a1.png",
+        "data-logo-in-use": "icon",
+        "data-background": "light-blue",
+        "data-block-type": "callout-component"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "attrs": {
+            "id": "b-callout-p",
+            "textAlign": null
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Inside a callout"
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "attrs": {
+            "id": "b-callout-list"
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "attrs": {
+                "id": "b-callout-li"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "id": "b-callout-li-p",
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "callout item"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "issue-embed-component",
+      "attrs": {
+        "id": "b-embed",
+        "entity_identifier": "42",
+        "project_identifier": "7",
+        "workspace_identifier": "acme",
+        "entity_name": "issue"
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "id": "b-heading-3",
+        "level": 3,
+        "textAlign": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Last heading"
+        }
+      ]
+    }
+  ]
+}

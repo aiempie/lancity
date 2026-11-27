@@ -14,7 +14,7 @@ const inputClass =
 /** Change or set password (PD-1054/1055) and deactivate the account (PD-0821). */
 export function PasswordSettings({ passwordAutoset }: { passwordAutoset: boolean }) {
   const locale = useLocale()
-  const copy = authMessages[locale === 'en' ? 'en' : 'vi']
+  const copy = authMessages[locale]
   const router = useRouter()
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')

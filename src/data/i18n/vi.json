@@ -37,5 +37,241 @@
     "googleLinkFailed": "Không thể liên kết Google. Vui lòng thử lại.",
     "googleLinkSameEmail": "Không thể liên kết Google. Hãy dùng tài khoản Google có cùng email.",
     "signOutFailed": "Không thể đăng xuất. Vui lòng thử lại."
+  },
+  "editor": {
+    "emojiPicker": {
+      "search": "Tìm kiếm",
+      "emoji": "Emoji",
+      "icon": "Biểu tượng",
+      "hexInput": "Nhập mã màu HEX",
+      "contrastNotice": "Màu sẽ được điều chỉnh để đủ độ tương phản."
+    },
+    "slashCommands": {
+      "sections": {
+        "colors": "Màu chữ",
+        "backgroundColors": "Màu nền"
+      },
+      "text": {
+        "title": "Văn bản",
+        "description": "Bắt đầu gõ văn bản thường."
+      },
+      "h1": {
+        "title": "Tiêu đề 1",
+        "description": "Tiêu đề mục lớn."
+      },
+      "h2": {
+        "title": "Tiêu đề 2",
+        "description": "Tiêu đề mục vừa."
+      },
+      "h3": {
+        "title": "Tiêu đề 3",
+        "description": "Tiêu đề mục nhỏ."
+      },
+      "h4": {
+        "title": "Tiêu đề 4",
+        "description": "Tiêu đề mục nhỏ."
+      },
+      "h5": {
+        "title": "Tiêu đề 5",
+        "description": "Tiêu đề mục nhỏ."
+      },
+      "h6": {
+        "title": "Tiêu đề 6",
+        "description": "Tiêu đề mục nhỏ."
+      },
+      "numberedList": {
+        "title": "Danh sách đánh số",
+        "description": "Tạo danh sách đánh số."
+      },
+      "bulletedList": {
+        "title": "Danh sách dấu đầu dòng",
+        "description": "Tạo danh sách dấu đầu dòng."
+      },
+      "todoList": {
+        "title": "Danh sách việc cần làm",
+        "description": "Tạo danh sách việc cần làm."
+      },
+      "table": {
+        "title": "Bảng",
+        "description": "Tạo bảng."
+      },
+      "quote": {
+        "title": "Trích dẫn",
+        "description": "Ghi lại một trích dẫn."
+      },
+      "code": {
+        "title": "Mã",
+        "description": "Ghi lại một đoạn mã."
+      },
+      "callout": {
+        "title": "Khung chú thích",
+        "description": "Chèn khung chú thích."
+      },
+      "divider": {
+        "title": "Đường phân cách",
+        "description": "Phân tách các khối."
+      },
+      "emoji": {
+        "title": "Emoji",
+        "description": "Chèn emoji."
+      },
+      "image": {
+        "title": "Ảnh",
+        "description": "Chèn ảnh."
+      },
+      "defaultTextColor": "Mặc định",
+      "defaultBackground": "Nền mặc định",
+      "changeTextColor": "Đổi màu chữ",
+      "changeBackgroundColor": "Đổi màu nền",
+      "workItem": {
+        "title": "Công việc",
+        "description": "Nhúng một công việc."
+      }
+    },
+    "blocks": {
+      "text": "Văn bản",
+      "heading1": "Tiêu đề 1",
+      "heading2": "Tiêu đề 2",
+      "heading3": "Tiêu đề 3",
+      "heading4": "Tiêu đề 4",
+      "heading5": "Tiêu đề 5",
+      "heading6": "Tiêu đề 6",
+      "bulletedList": "Danh sách dấu đầu dòng",
+      "numberedList": "Danh sách đánh số",
+      "todoList": "Danh sách việc cần làm",
+      "quote": "Trích dẫn",
+      "code": "Mã",
+      "table": "Bảng",
+      "image": "Ảnh",
+      "divider": "Đường phân cách",
+      "multiple": "Nhiều loại"
+    },
+    "marks": {
+      "bold": "In đậm",
+      "italic": "In nghiêng",
+      "underline": "Gạch chân",
+      "strikethrough": "Gạch ngang",
+      "link": "Liên kết",
+      "color": "Màu",
+      "backgroundColor": "Màu nền",
+      "textAlign": "Căn lề"
+    },
+    "colors": {
+      "gray": "Xám",
+      "peach": "Hồng đào",
+      "pink": "Hồng",
+      "orange": "Cam",
+      "green": "Xanh lá",
+      "lightBlue": "Xanh nhạt",
+      "darkBlue": "Xanh đậm",
+      "purple": "Tím",
+      "color": "Màu",
+      "textColors": "Màu chữ",
+      "backgroundColors": "Màu nền",
+      "textColorOf": "Màu chữ {color}",
+      "backgroundColorOf": "Màu nền {color}",
+      "clearTextColor": "Bỏ màu chữ",
+      "clearBackgroundColor": "Bỏ màu nền"
+    },
+    "alignment": {
+      "group": "Căn lề văn bản",
+      "left": "Căn trái",
+      "center": "Căn giữa",
+      "right": "Căn phải"
+    },
+    "fonts": {
+      "sansSerif": "Không chân",
+      "serif": "Có chân",
+      "mono": "Đơn cách"
+    },
+    "link": {
+      "label": "Liên kết",
+      "url": "URL liên kết",
+      "placeholder": "Nhập hoặc dán liên kết",
+      "remove": "Xóa liên kết",
+      "apply": "Áp dụng liên kết",
+      "copy": "Sao chép liên kết",
+      "edit": "Sửa liên kết",
+      "urlLabel": "URL",
+      "urlPlaceholder": "Nhập hoặc dán URL",
+      "textLabel": "Văn bản",
+      "textPlaceholder": "Nhập văn bản hiển thị",
+      "invalidUrl": "Vui lòng nhập URL hợp lệ."
+    },
+    "toolbar": {
+      "formatting": "Thanh định dạng",
+      "textFormatting": "Định dạng văn bản"
+    },
+    "blockMenu": {
+      "delete": "Xóa",
+      "duplicate": "Nhân bản",
+      "fitToWidth": "Vừa chiều rộng"
+    },
+    "table": {
+      "insertLeft": "Chèn bên trái",
+      "insertRight": "Chèn bên phải",
+      "insertAbove": "Chèn phía trên",
+      "insertBelow": "Chèn phía dưới",
+      "duplicate": "Nhân bản",
+      "clearContents": "Xóa nội dung",
+      "delete": "Xóa",
+      "headerColumn": "Cột tiêu đề",
+      "headerRow": "Hàng tiêu đề",
+      "columnOptions": "Tùy chọn cột",
+      "rowOptions": "Tùy chọn hàng",
+      "insertColumns": "Chèn cột",
+      "insertRows": "Chèn hàng"
+    },
+    "image": {
+      "download": "Tải xuống",
+      "downloadImage": "Tải ảnh xuống",
+      "align": "Căn lề",
+      "alignImage": "Căn lề ảnh",
+      "alignment": "Căn lề ảnh",
+      "alignImageTo": "Căn ảnh: {alignment}",
+      "viewFullScreen": "Xem toàn màn hình",
+      "viewImageFullScreen": "Xem ảnh toàn màn hình",
+      "controls": "Điều khiển ảnh",
+      "viewer": "Trình xem ảnh toàn màn hình",
+      "closeViewer": "Đóng trình xem ảnh",
+      "preview": "Xem trước",
+      "viewerControls": "Điều khiển trình xem ảnh",
+      "zoom": "Thu phóng ảnh",
+      "zoomOut": "Thu nhỏ",
+      "zoomIn": "Phóng to",
+      "openInNewTab": "Mở ảnh trong thẻ mới",
+      "errorLoading": "Không tải được ảnh",
+      "uploading": "Đang tải lên…",
+      "dropHere": "Thả ảnh vào đây",
+      "add": "Thêm ảnh",
+      "choose": "Chọn ảnh",
+      "retry": "Thử lại",
+      "retryDuplication": "Thử sao chép ảnh lại",
+      "noFile": "Chưa chọn tệp. Hãy chọn một tệp để tải lên.",
+      "invalidType": "Không hỗ trợ loại tệp này.",
+      "tooLarge": "Tệp quá lớn. Hãy chọn tệp nhỏ hơn {size} MB."
+    },
+    "mention": {
+      "loading": "Đang tải…",
+      "noResults": "Không có kết quả",
+      "unknownUser": "Người dùng không xác định"
+    },
+    "title": {
+      "placeholder": "Chưa có tiêu đề"
+    },
+    "ai": {
+      "handle": "Thao tác AI"
+    },
+    "placeholder": {
+      "default": "Gõ \"/\" để chọn lệnh…",
+      "heading": "Tiêu đề {level}"
+    },
+    "code": {
+      "copy": "Sao chép mã",
+      "copied": "Đã sao chép mã"
+    },
+    "emoji": {
+      "noResults": "Không tìm thấy emoji"
+    }
   }
 }

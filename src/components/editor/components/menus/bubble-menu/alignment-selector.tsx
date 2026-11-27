@@ -1,0 +1,89 @@
+import { useEditorTranslations } from '@/components/editor/i18n'
+import type { Editor } from '@tiptap/core'
+import type { ComponentType, SVGProps } from 'react'
+import { AlignCenterOutline, AlignLeftOutline, AlignRightOutline } from '@/components/editor/icons'
+// plane imports
+import { Icon } from '@/components/editor/propel/components/icon'
+import { ToolbarButton, ToolbarGroup } from '@/components/editor/propel/elements/toolbar'
+// components
+import { TextAlignItem } from '@/components/editor/components/menus'
+// types
+import type { TEditorCommands } from '@/components/editor/types'
+import type { EditorStateType } from './root'
+
+type Props = {
+  editor: Editor
+  editorState: EditorStateType
+}
+
+export function TextAlignmentSelector(props: Props) {
+  const { editor, editorState } = props
+  const t = useEditorTranslations()
+  const menuItem = TextAlignItem(editor)
+
+  const textAlignmentOptions: {
+    itemKey: TEditorCommands
+    renderKey: string
+    label: string
+    icon: ComponentType<SVGProps<SVGSVGElement>>
+    command: () => void
+    isActive: () => boolean
+  }[] = [
+    {
+      itemKey: 'text-align',
+      renderKey: 'text-align-left',
+      label: t('alignment.left'),
+      icon: AlignLeftOutline,
+      command: () =>
+        menuItem.command({
+          alignment: 'left'
+        }),
+      isActive: () => editorState.left
+    },
+    {
+      itemKey: 'text-align',
+      renderKey: 'text-align-center',
+      label: t('alignment.center'),
+      icon: AlignCenterOutline,
+      command: () =>
+        menuItem.command({
+          alignment: 'center'
+        }),
+      isActive: () => editorState.center
+    },
+    {
+      itemKey: 'text-align',
+      renderKey: 'text-align-right',
+      label: t('alignment.right'),
+      icon: AlignRightOutline,
+      command: () =>
+        menuItem.command({
+          alignment: 'right'
+        }),
+      isActive: () => editorState.right
+    }
+  ]
+  if (editorState.code) return null
+
+  return (
+    <ToolbarGroup role='group' aria-label={t('alignment.group')}>
+      {textAlignmentOptions.map(item => (
+        <ToolbarButton
+          key={item.renderKey}
+          type='button'
+          size='sm'
+          labeled={false}
+          aria-label={item.label}
+          aria-pressed={item.isActive()}
+          data-pressed={item.isActive() ? '' : undefined}
+          onClick={e => {
+            e.stopPropagation()
+            item.command()
+          }}
+        >
+          <Icon icon={item.icon} />
+        </ToolbarButton>
+      ))}
+    </ToolbarGroup>
+  )
+}

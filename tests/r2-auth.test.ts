@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { authResponseCookies } from '../src/lib/auth/response-cookies'
 import { getSafeRedirectUrl, validateNextPath } from '../src/server/common/path-validator'
 import { isPasswordStrong, passwordScore } from '../src/server/identity/password'

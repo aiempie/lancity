@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { Hono } from 'hono'
 import { z } from 'zod'
 import { handleApiError } from '../src/server/api/v1/errors'

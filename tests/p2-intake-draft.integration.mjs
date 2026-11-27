@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 // Isolated Worker test of intake work items (app and public API) and workspace drafts. See README "Kiểm thử chuyển backend".
 // Needs the route mounts listed in docs/plane-demo-porting/handoff/p2-intake-draft.md.

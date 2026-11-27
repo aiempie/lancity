@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 const base = new URL(process.env.LANCITY_TEST_URL ?? 'http://localhost:4198')
 assert.ok(['localhost', '127.0.0.1', '[::1]'].includes(base.hostname))

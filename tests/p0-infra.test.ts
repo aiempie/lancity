@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { cronMatches, dispatchJob, enqueueJob, registerJobHandler, registerScheduled, UnknownJobError } from '../src/server/common/jobs'
 import { renderEmail } from '../src/server/common/mail-templates'
 

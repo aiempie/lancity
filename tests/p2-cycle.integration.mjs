@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { openTargetDatabase } from '../scripts/plane-import/target-schema.ts'
-import test from 'node:test'
+import { test } from 'vitest'
 import { drizzle } from 'drizzle-orm/d1'
 import * as schema from '../src/db/schema.ts'
 import { listArchivedCycles, setCycleArchived } from '../src/server/cycle/archive.ts'

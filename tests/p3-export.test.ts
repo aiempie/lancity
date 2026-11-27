@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { defineExportSchema, formatDate, formatDateTime, listField, numberField, serializeRows, stringField } from '../src/server/export/base'
 import { DataExporter } from '../src/server/export/exporter'
 import { CsvFormatter, CsvSchemaFormatter, JsonFormatter, XlsxFormatter, parseCsv, prettifyHeader, writeCsv } from '../src/server/export/formatters'

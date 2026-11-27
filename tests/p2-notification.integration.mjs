@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { drizzle } from 'drizzle-orm/d1'
 import { openTargetDatabase } from '../scripts/plane-import/target-schema.ts'
 import { register } from '../src/server/notification/jobs/index.ts'

@@ -1,4 +1,4 @@
-/** Copy for the Plane auth flows. Merge into src/data/i18n/{en,vi}.json when the i18n owner is available. */
+/** Copy for the Plane auth flows. Merge into src/data/i18n/{en,vi,ja}.json when the i18n owner is available. */
 export const authMessages = {
   en: {
     magicCode: 'Sign in with a code',
@@ -18,7 +18,7 @@ export const authMessages = {
     resetInvalid: 'The reset link is invalid or expired.',
     weakPassword: 'Choose a stronger password.',
     backToLogin: 'Back to sign in',
-    continueWith: 'Continue with',
+    continueWith: 'Continue with {provider}',
     changePassword: 'Change password',
     oldPassword: 'Current password',
     setPassword: 'Set password',
@@ -47,7 +47,7 @@ export const authMessages = {
     resetInvalid: 'Liên kết đặt lại không hợp lệ hoặc đã hết hạn.',
     weakPassword: 'Hãy chọn mật khẩu mạnh hơn.',
     backToLogin: 'Quay lại đăng nhập',
-    continueWith: 'Tiếp tục với',
+    continueWith: 'Tiếp tục với {provider}',
     changePassword: 'Đổi mật khẩu',
     oldPassword: 'Mật khẩu hiện tại',
     setPassword: 'Đặt mật khẩu',
@@ -57,6 +57,35 @@ export const authMessages = {
     deactivateFailed: 'Không vô hiệu hóa được tài khoản.',
     deactivateConfirm: 'Vô hiệu hóa tài khoản? Bạn sẽ bị đăng xuất khỏi mọi thiết bị.',
     unlink: 'Hủy liên kết'
+  },
+  ja: {
+    magicCode: 'コードでログイン',
+    sendCode: 'コードを送信',
+    code: 'メールに記載のコード',
+    verifyCode: 'コードを確認',
+    codeSent: '8桁のコードをメールアドレスに送信しました。',
+    codeFailed: 'コードが無効か、有効期限が切れています。新しいコードをリクエストしてください。',
+    codeUnavailable: 'このインスタンスではコードによるログインは利用できません。',
+    forgotPassword: 'パスワードをお忘れですか？',
+    sendReset: 'リセットリンクを送信',
+    resetSent: 'このメールアドレスのアカウントが存在する場合、パスワードのリセットリンクを送信します。',
+    resetFailed: 'リセットリンクを送信できませんでした。もう一度お試しください。',
+    newPassword: '新しいパスワード',
+    resetPassword: 'パスワードをリセット',
+    resetDone: 'パスワードを更新しました。新しいパスワードでログインしてください。',
+    resetInvalid: 'リセットリンクが無効か、有効期限が切れています。',
+    weakPassword: 'より強力なパスワードを設定してください。',
+    backToLogin: 'ログインに戻る',
+    continueWith: '{provider}で続行',
+    changePassword: 'パスワードを変更',
+    oldPassword: '現在のパスワード',
+    setPassword: 'パスワードを設定',
+    passwordUpdated: 'パスワードを更新しました。',
+    passwordFailed: 'パスワードを更新できませんでした。入力内容を確認して、もう一度お試しください。',
+    deactivate: 'アカウントを無効化',
+    deactivateFailed: 'アカウントを無効化できませんでした。',
+    deactivateConfirm: 'アカウントを無効化しますか？すべてのデバイスからログアウトされます。',
+    unlink: '連携を解除'
   }
 } as const
 

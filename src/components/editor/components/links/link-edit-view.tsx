@@ -1,0 +1,179 @@
+import { useEditorTranslations } from '@/components/editor/i18n'
+import type { Node } from '@tiptap/pm/model'
+import { InputField } from '@/components/editor/propel/components/input-field'
+import { Icon } from '@/components/editor/propel/components/icon'
+import { Button } from '@/components/editor/propel/elements/button'
+import { UnlinkOutline } from '@/components/editor/icons'
+import { useCallback, useEffect, useRef, useState } from 'react'
+// components
+import type { LinkViewProps, LinkViews } from '@/components/editor/components/links'
+// helpers
+import { isValidHttpUrl } from '@/components/editor/helpers/common'
+
+type InputViewProps = {
+  label: string
+  value: string
+  placeholder: string
+  onChange: (value: string) => void
+  autoFocus?: boolean
+}
+
+function InputView({ label, value, placeholder, onChange, autoFocus }: InputViewProps) {
+  return (
+    <div className='w-[280px]'>
+      <InputField
+        size='md'
+        orientation='vertical'
+        label={label}
+        type='text'
+        placeholder={placeholder}
+        onClick={e => e.stopPropagation()}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        autoFocus={autoFocus}
+      />
+    </div>
+  )
+}
+
+type LinkEditViewProps = {
+  viewProps: LinkViewProps
+  switchView: (view: LinkViews) => void
+}
+
+export function LinkEditView({ viewProps }: LinkEditViewProps) {
+  const { editor, from, to, url: initialUrl, text: initialText, closeLinkView } = viewProps
+  const t = useEditorTranslations()
+
+  // State
+  const [positionRef] = useState({ from, to })
+  const [localUrl, setLocalUrl] = useState(initialUrl)
+  const [localText, setLocalText] = useState(initialText ?? '')
+  const [linkRemoved, setLinkRemoved] = useState(false)
+  const hasSubmitted = useRef(false)
+
+  const removeLink = useCallback(() => {
+    editor.view.dispatch(editor.state.tr.removeMark(from, to, editor.schema.marks.link))
+    setLinkRemoved(true)
+    closeLinkView()
+  }, [editor, from, to, closeLinkView])
+
+  // Effects
+  useEffect(
+    () =>
+      // Cleanup effect: Remove link if not submitted and url is empty
+      () => {
+        if (!hasSubmitted.current && !linkRemoved && initialUrl === '') {
+          try {
+            removeLink()
+          } catch (e) {
+            console.error('Error removing link', e)
+          }
+        }
+      },
+    [removeLink, linkRemoved, initialUrl]
+  )
+
+  // Sync state with props
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Plane syncs local state from editor state in this effect
+    setLocalUrl(initialUrl)
+  }, [initialUrl])
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Plane syncs local state from editor state in this effect
+    if (initialText) setLocalText(initialText)
+  }, [initialText])
+
+  // Handlers
+  const handleTextChange = useCallback((value: string) => {
+    if (value.trim() !== '') setLocalText(value)
+  }, [])
+
+  const applyChanges = useCallback((): boolean => {
+    if (linkRemoved) return false
+    hasSubmitted.current = true
+
+    const { url, isValid } = isValidHttpUrl(localUrl)
+    if (to >= editor.state.doc.content.size || !isValid) return false
+
+    // Apply URL change
+    const tr = editor.state.tr
+    tr.removeMark(from, to, editor.schema.marks.link).addMark(from, to, editor.schema.marks.link.create({ href: url }))
+    editor.view.dispatch(tr)
+
+    // Apply text change if different
+    if (localText !== initialText) {
+      const node = editor.view.state.doc.nodeAt(from) as Node
+      if (!node || !node.marks) return false
+
+      editor
+        .chain()
+        .setTextSelection(from)
+        .deleteRange({ from: positionRef.from, to: positionRef.to })
+        .insertContent(localText)
+        .setTextSelection({ from, to: from + localText.length })
+        .run()
+      //
+      // Restore marks
+      node.marks.forEach(mark => {
+        editor.chain().setMark(mark.type.name, mark.attrs).run()
+      })
+    }
+
+    return true
+  }, [linkRemoved, positionRef, editor, from, to, initialText, localText, localUrl])
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.stopPropagation()
+        if (applyChanges()) {
+          closeLinkView()
+          setLocalUrl('')
+          setLocalText('')
+        }
+      }
+    },
+    [applyChanges, closeLinkView]
+  )
+
+  return (
+    <div
+      onKeyDown={handleKeyDown}
+      className='shadow-md animate-in fade-in flex translate-y-1 flex-col gap-3 rounded-sm border-2 border-subtle bg-layer-1 p-2'
+      style={{
+        transition: 'all 0.1s cubic-bezier(.55, .085, .68, .53)'
+      }}
+      tabIndex={0}
+    >
+      <InputView
+        label={t('link.urlLabel')}
+        placeholder={t('link.urlPlaceholder')}
+        value={localUrl}
+        onChange={setLocalUrl}
+        autoFocus
+      />
+      <InputView
+        label={t('link.textLabel')}
+        placeholder={t('link.textPlaceholder')}
+        value={localText}
+        onChange={handleTextChange}
+      />
+      <div className='bg-strong mb-1 h-[1px] w-full gap-2' />
+      <Button
+        type='button'
+        variant='ghost'
+        size='sm'
+        stretch='auto'
+        onClick={removeLink}
+        onKeyDown={e => {
+          if (e.key === 'Enter') e.stopPropagation()
+        }}
+      >
+        <Icon icon={UnlinkOutline} />
+        {t('link.remove')}
+      </Button>
+    </div>
+  )
+}

@@ -4,6 +4,7 @@ import { ISSUE_COUNTABLE, ISSUE_LIVE, projectUsesPoints } from '@/server/cycle/q
 import { ServiceError } from '@/server/common/errors'
 import type { Actor } from '@/types/auth/schema'
 import type { LancityDb } from '@/types/database/schema'
+import { estimateToNumber, numericEstimateOrZeroSql, numericEstimateSql } from '@/server/estimate/numeric'
 
 type Scope = { cycleId: number; projectId: number; workspaceId: number }
 type Row = Record<string, unknown>
@@ -56,9 +57,9 @@ export async function cycleDistribution(
       ? sql`count(${counted}) as total_issues,
           count(${counted}) filter (where i.completed_at is not null) as completed_issues,
           count(${counted}) filter (where i.completed_at is null) as pending_issues`
-      : sql`sum(cast(ep.value as real)) as total_estimates,
-          sum(cast(ep.value as real)) filter (where i.completed_at is not null) as completed_estimates,
-          sum(cast(ep.value as real)) filter (where i.completed_at is null) as pending_estimates`
+      : sql`sum(${numericEstimateSql('ep.value')}) as total_estimates,
+          sum(${numericEstimateSql('ep.value')}) filter (where i.completed_at is not null) as completed_estimates,
+          sum(${numericEstimateSql('ep.value')}) filter (where i.completed_at is null) as pending_estimates`
   const points = metric === 'points' ? sql`left join estimate_points ep on ep.id = i.estimate_point_id` : sql``
   return db.all<Row>(
     sql`select ${dim.select}, ${measures}
@@ -98,8 +99,8 @@ export async function burndownPlot(
         join estimate_points ep on ep.id = i.estimate_point_id
         where ${inCycle(scope)} order by d`
     )
-    total = rows.reduce((sum, row) => sum + Number(row.value), 0)
-    completed = rows.filter(row => row.d).map(row => ({ date: row.d as string, amount: Number(row.value) }))
+    total = rows.reduce((sum, row) => sum + estimateToNumber(row.value), 0)
+    completed = rows.filter(row => row.d).map(row => ({ date: row.d as string, amount: estimateToNumber(row.value) }))
   } else {
     const [count] = await db.all<{ n: number }>(
       sql`select count(*) as n from cycle_issues ci join issues i on i.id = ci.issue_id and i.project_id = ci.project_id
@@ -168,12 +169,12 @@ export async function getCycleProgress(db: LancityDb, actor: Actor, slug: string
   const scope = { cycleId, projectId, workspaceId: workspace.id }
   const [points] = await db.all<Row>(
     sql`select
-        sum(case when s."group" = 'backlog' then cast(ep.value as real) else 0 end) as backlog,
-        sum(case when s."group" = 'unstarted' then cast(ep.value as real) else 0 end) as unstarted,
-        sum(case when s."group" = 'started' then cast(ep.value as real) else 0 end) as started,
-        sum(case when s."group" = 'cancelled' then cast(ep.value as real) else 0 end) as cancelled,
-        sum(case when s."group" = 'completed' then cast(ep.value as real) else 0 end) as completed,
-        coalesce(sum(cast(ep.value as real)), 0) as total
+        sum(case when s."group" = 'backlog' then ${numericEstimateOrZeroSql('ep.value')} else 0 end) as backlog,
+        sum(case when s."group" = 'unstarted' then ${numericEstimateOrZeroSql('ep.value')} else 0 end) as unstarted,
+        sum(case when s."group" = 'started' then ${numericEstimateOrZeroSql('ep.value')} else 0 end) as started,
+        sum(case when s."group" = 'cancelled' then ${numericEstimateOrZeroSql('ep.value')} else 0 end) as cancelled,
+        sum(case when s."group" = 'completed' then ${numericEstimateOrZeroSql('ep.value')} else 0 end) as completed,
+        coalesce(sum(${numericEstimateSql('ep.value')}), 0) as total
       from cycle_issues ci join issues i on i.id = ci.issue_id and i.project_id = ci.project_id
       join estimate_points ep on ep.id = i.estimate_point_id
       join estimates e on e.id = ep.estimate_id and e.type = 'points'

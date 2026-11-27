@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import * as decoding from 'lib0/decoding'
 import * as encoding from 'lib0/encoding'
 
@@ -56,28 +56,17 @@ test('a socket without a session is refused the Hocuspocus way', async () => {
   encoding.writeVarUint(frame, 2) // Auth
   encoding.writeVarUint(frame, 0) // Token
   encoding.writeVarString(frame, JSON.stringify({ id: '1' }))
-  // The server sends a PermissionDenied frame and then closes with 4401. Dev can drop the frame right before the
-  // close, so accept either the frame or the 4401 close; the upgrade itself (open) must have happened.
-  const outcome = await new Promise((resolve, reject) => {
-    let opened = false
-    socket.addEventListener('open', () => {
-      opened = true
-      socket.send(encoding.toUint8Array(frame))
-    })
-    socket.addEventListener('message', event => resolve({ type: 'frame', data: new Uint8Array(event.data) }))
-    socket.addEventListener('close', event => resolve({ type: 'close', code: event.code, opened }))
-    socket.addEventListener('error', () => setTimeout(() => reject(new Error('socket error')), 1000))
+  // The server answers with a PermissionDenied frame and keeps the socket open, like the Hocuspocus server.
+  const data = await new Promise((resolve, reject) => {
+    socket.addEventListener('open', () => socket.send(encoding.toUint8Array(frame)))
+    socket.addEventListener('message', event => resolve(new Uint8Array(event.data)))
+    socket.addEventListener('close', event => reject(new Error(`closed with ${event.code} before the refusal`)))
     setTimeout(() => reject(new Error('timeout')), 10_000)
   })
-  if (outcome.type === 'frame') {
-    const decoder = decoding.createDecoder(outcome.data)
-    assert.equal(decoding.readVarString(decoder), '1')
-    assert.equal(decoding.readVarUint(decoder), 2) // Auth
-    assert.equal(decoding.readVarUint(decoder), 1) // PermissionDenied
-    assert.equal(decoding.readVarString(decoder), 'AUTH_MISSING_CREDENTIALS')
-  } else {
-    assert.equal(outcome.opened, true, 'the upgrade must succeed before the server refuses the session')
-    assert.equal(outcome.code, 4401)
-  }
+  const decoder = decoding.createDecoder(data)
+  assert.equal(decoding.readVarString(decoder), '1')
+  assert.equal(decoding.readVarUint(decoder), 2) // Auth
+  assert.equal(decoding.readVarUint(decoder), 1) // PermissionDenied
+  assert.equal(decoding.readVarString(decoder), 'AUTH_MISSING_CREDENTIALS')
   socket.close()
 })

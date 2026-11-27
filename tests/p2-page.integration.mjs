@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 // Requires pagesRoutes (src/server/api/v1/routes/pages.ts) mounted under /api/v1/workspaces and the page job module loaded.
 const base = new URL(process.env.LANCITY_TEST_URL ?? 'http://localhost:4198')

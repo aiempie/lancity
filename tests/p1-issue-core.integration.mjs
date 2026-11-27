@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 import { setTimeout as delay } from 'node:timers/promises'
 
 // Isolated Worker test of the core issue API: create, list, filters, groups, detail, update, archive, bulk, states, labels.

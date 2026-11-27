@@ -14,7 +14,7 @@ const inputClass =
 
 function useCopy() {
   const locale = useLocale()
-  const messages = authMessages[locale === 'en' ? 'en' : 'vi']
+  const messages = authMessages[locale]
   return (key: AuthMessageKey) => messages[key]
 }
 
@@ -42,7 +42,7 @@ export function ProviderButtons({ providers }: { providers: string[] }) {
     <div className='space-y-2'>
       {providers.map(provider => (
         <Button key={provider} className='w-full' type='button' variant='outline' onClick={() => start(provider)}>
-          {copy('continueWith')} {provider.charAt(0).toUpperCase() + provider.slice(1)}
+          {copy('continueWith').replace('{provider}', provider.charAt(0).toUpperCase() + provider.slice(1))}
         </Button>
       ))}
       {error && (

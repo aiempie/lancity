@@ -7,7 +7,7 @@ const allowedTags = new Set(
     'a abbr acronym area article aside b bdi bdo blockquote br caption center cite code col colgroup data dd del details dfn ' +
     'div dl dt em figcaption figure footer h1 h2 h3 h4 h5 h6 header hgroup hr i img ins kbd li map mark nav ol p pre q rp rt ' +
     'rtc ruby s samp small span strike strong sub summary sup table tbody td tfoot th thead time tr tt u ul var wbr ' +
-    'mention-component label input image-component'
+    'mention-component label input image-component issue-embed-component'
   ).split(' ')
 )
 const voidTags = new Set(['area', 'br', 'col', 'hr', 'img', 'input', 'wbr'])
@@ -25,6 +25,9 @@ const tagAttributes: Record<string, Set<string>> = {
   'image-component': new Set(['width', 'height', 'aspectratio', 'src', 'alignment', 'status']),
   img: new Set(['width', 'height', 'aspectratio', 'alignment', 'src', 'alt']),
   'mention-component': new Set(['entity_identifier', 'entity_name']),
+  // Lancity: the work item embed of the document editor (Plane drops it). Pages rebuild their content from this HTML
+  // when duplicated or restored from a version, so the embed has to survive sanitizing.
+  'issue-embed-component': new Set(['entity_identifier', 'project_identifier', 'workspace_identifier', 'entity_name']),
   th: new Set(['colspan', 'rowspan', 'colwidth', 'background']),
   td: new Set(['colspan', 'rowspan', 'colwidth', 'background', 'textcolor']),
   tr: new Set(['background', 'textcolor']),

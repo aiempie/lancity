@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { inflateRawSync } from 'node:zlib'
-import test from 'node:test'
+import { test } from 'vitest'
 
 // Requires the routes of p3-export mounted as described in docs/plane-demo-porting/handoff/p3-export.md:
 // workspaceExportsRoutes at /workspaces/:slug and importsRoutes at /workspaces/:slug/projects/:projectId,

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 
 const base = new URL(process.env.LANCITY_TEST_URL ?? 'http://localhost:4198')
 assert.ok(['localhost', '127.0.0.1', '[::1]'].includes(base.hostname), 'Use an isolated local Worker')
@@ -90,12 +90,19 @@ test('estimates: bulk create/update, point removal with reassignment, workspace 
     const updated = await responseJson(
       await send('PATCH', `/estimates/${estimate.id}`, {
         estimate: { name: 'Renamed' },
-        estimate_points: [{ id: p1.id, value: 'one' }, { id: 999999999, value: 'ghost' }]
+        estimate_points: [{ id: p1.id, value: '10' }, { id: 999999999, value: 'ghost' }]
       }),
       200
     )
     assert.equal(updated.name, 'Renamed')
-    assert.equal(updated.points.find(point => point.id === p1.id).value, 'one')
+    assert.equal(updated.points.find(point => point.id === p1.id).value, '10')
+    // A points estimate holds numbers only (Plane #9939), and a rejected request changes nothing
+    const nonNumeric = await send('PATCH', `/estimates/${estimate.id}`, { estimate: { name: 'Rejected' }, estimate_points: [{ id: p1.id, value: 'one' }] })
+    assert.equal(nonNumeric.status, 400)
+    assert.match((await nonNumeric.json()).error.message, /must be a number/)
+    assert.equal((await responseJson(await send('GET', `/estimates/${estimate.id}`), 200)).name, 'Renamed')
+    assert.equal((await send('POST', `/estimates/${estimate.id}/estimate-points`, { key: 9, value: 'M' })).status, 400)
+    assert.equal((await send('POST', '/estimates', { estimate: { type: 'points' }, estimate_points: [{ key: 1, value: 'S' }] })).status, 400)
     // Plain name/description patch still works
     assert.equal((await responseJson(await send('PATCH', `/estimates/${estimate.id}`, { description: 'd' }), 200)).description, 'd')
 

@@ -1,0 +1,392 @@
+/*
+ * Design tokens of the Plane editor and its Propel primitives, mapped onto the Lancity theme (globals.css).
+ * Only the tokens that the editor code uses are declared. Colors follow the light and dark Lancity variables.
+ * `text-primary` / `text-secondary` are Lancity brand utilities, so the editor uses `text-fg-primary` /
+ * `text-fg-secondary` for its text colors. CSS can still read `var(--text-color-primary)`.
+ */
+
+@layer base {
+  /* Declared on `.dark` again so the mixes are recomputed wherever the dark class is set. */
+  :root,
+  .dark {
+    --bg-surface-1: var(--background);
+    --bg-layer-1: var(--muted);
+    --bg-layer-1-hover: color-mix(in oklch, var(--muted), var(--foreground) 5%);
+    --bg-layer-2: var(--popover);
+    --bg-layer-2-hover: color-mix(in oklch, var(--popover), var(--foreground) 4%);
+    --bg-layer-2-active: color-mix(in oklch, var(--popover), var(--foreground) 7%);
+    --bg-layer-3: color-mix(in oklch, var(--muted), var(--foreground) 6%);
+    --bg-layer-3-hover: color-mix(in oklch, var(--muted), var(--foreground) 10%);
+    --bg-layer-3-active: color-mix(in oklch, var(--muted), var(--foreground) 13%);
+    --bg-layer-disabled: color-mix(in oklch, var(--muted), var(--foreground) 10%);
+    --bg-layer-transparent: transparent;
+    --bg-layer-transparent-hover: color-mix(in oklch, var(--foreground) 5%, transparent);
+    --bg-layer-transparent-active: color-mix(in oklch, var(--foreground) 8%, transparent);
+    --bg-layer-transparent-selected: color-mix(in oklch, var(--foreground) 10%, transparent);
+    --bg-accent-primary: var(--primary);
+    --bg-accent-primary-hover: color-mix(in oklch, var(--primary), var(--foreground) 12%);
+    --bg-accent-primary-active: color-mix(in oklch, var(--primary), var(--foreground) 20%);
+    --bg-danger-primary: var(--destructive);
+    --bg-danger-primary-hover: color-mix(in oklch, var(--destructive), var(--foreground) 12%);
+    --bg-danger-primary-active: color-mix(in oklch, var(--destructive), var(--foreground) 20%);
+    --bg-danger-subtle: color-mix(in oklch, var(--destructive) 10%, transparent);
+    --bg-danger-subtle-hover: color-mix(in oklch, var(--destructive) 15%, transparent);
+    --bg-danger-subtle-active: color-mix(in oklch, var(--destructive) 20%, transparent);
+    --bg-danger-subtle-selected: color-mix(in oklch, var(--destructive) 20%, transparent);
+    --bg-inverse: var(--foreground);
+    --txt-primary: var(--foreground);
+    --txt-secondary: color-mix(in oklch, var(--foreground), var(--background) 15%);
+    --txt-tertiary: var(--muted-foreground);
+    --txt-placeholder: color-mix(in oklch, var(--muted-foreground), var(--background) 20%);
+    --txt-disabled: color-mix(in oklch, var(--muted-foreground), var(--background) 40%);
+    --txt-inverse: var(--background);
+    --txt-on-color: var(--primary-foreground);
+    --txt-on-color-disabled: color-mix(in oklch, var(--primary-foreground) 60%, transparent);
+    --txt-accent-primary: var(--primary);
+    --txt-accent-secondary: color-mix(in oklch, var(--primary), var(--foreground) 20%);
+    --txt-danger-primary: var(--destructive);
+    --txt-danger-secondary: color-mix(in oklch, var(--destructive), var(--foreground) 20%);
+    --txt-success-primary: oklch(0.627 0.17 149.2);
+    --txt-icon-secondary: color-mix(in oklch, var(--foreground), var(--background) 15%);
+    --txt-icon-tertiary: var(--muted-foreground);
+    --txt-icon-placeholder: color-mix(in oklch, var(--muted-foreground), var(--background) 20%);
+    --txt-icon-disabled: color-mix(in oklch, var(--muted-foreground), var(--background) 40%);
+    --txt-icon-on-color: var(--primary-foreground);
+    --txt-icon-accent-primary: var(--primary);
+    --txt-icon-danger-primary: var(--destructive);
+    --border-subtle: var(--border);
+    --border-subtle-1: color-mix(in oklch, var(--border), var(--foreground) 6%);
+    --border-strong: color-mix(in oklch, var(--border), var(--foreground) 15%);
+    --border-strong-1: color-mix(in oklch, var(--border), var(--foreground) 25%);
+    --border-disabled: var(--border);
+    --border-accent-strong: var(--primary);
+    --border-danger-strong: var(--destructive);
+    --scrollbar-thumb: color-mix(in oklch, var(--foreground) 30%, transparent);
+    --scrollbar-thumb-hover: color-mix(in oklch, var(--foreground) 40%, transparent);
+    --scrollbar-thumb-active: color-mix(in oklch, var(--foreground) 50%, transparent);
+    --scrollbar-thumb-rest: transparent;
+    --background-color-accent-primary: var(--bg-accent-primary);
+    --background-color-accent-primary-active: var(--bg-accent-primary-active);
+    --background-color-accent-primary-hover: var(--bg-accent-primary-hover);
+    --background-color-danger-primary: var(--bg-danger-primary);
+    --background-color-danger-primary-active: var(--bg-danger-primary-active);
+    --background-color-danger-primary-hover: var(--bg-danger-primary-hover);
+    --background-color-danger-subtle: var(--bg-danger-subtle);
+    --background-color-danger-subtle-active: var(--bg-danger-subtle-active);
+    --background-color-danger-subtle-hover: var(--bg-danger-subtle-hover);
+    --background-color-danger-subtle-selected: var(--bg-danger-subtle-selected);
+    --background-color-inverse: var(--bg-inverse);
+    --background-color-layer-1: var(--bg-layer-1);
+    --background-color-layer-1-hover: var(--bg-layer-1-hover);
+    --background-color-layer-2: var(--bg-layer-2);
+    --background-color-layer-2-active: var(--bg-layer-2-active);
+    --background-color-layer-2-hover: var(--bg-layer-2-hover);
+    --background-color-layer-3: var(--bg-layer-3);
+    --background-color-layer-3-active: var(--bg-layer-3-active);
+    --background-color-layer-3-hover: var(--bg-layer-3-hover);
+    --background-color-layer-disabled: var(--bg-layer-disabled);
+    --background-color-layer-transparent: var(--bg-layer-transparent);
+    --background-color-layer-transparent-active: var(--bg-layer-transparent-active);
+    --background-color-layer-transparent-hover: var(--bg-layer-transparent-hover);
+    --background-color-layer-transparent-selected: var(--bg-layer-transparent-selected);
+    --background-color-scrollbar-thumb: var(--scrollbar-thumb);
+    --background-color-scrollbar-thumb-active: var(--scrollbar-thumb-active);
+    --background-color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+    --background-color-surface-1: var(--bg-surface-1);
+    --border-color-accent-strong: var(--border-accent-strong);
+    --border-color-danger-strong: var(--border-danger-strong);
+    --border-color-disabled: var(--border-disabled);
+    --border-color-icon-tertiary: var(--txt-icon-tertiary);
+    --border-color-strong: var(--border-strong);
+    --border-color-strong-1: var(--border-strong-1);
+    --border-color-subtle: var(--border-subtle);
+    --border-color-subtle-1: var(--border-subtle-1);
+    --ring-color-accent-strong: var(--border-accent-strong);
+    --ring-color-danger-strong: var(--border-danger-strong);
+    --text-color-accent-primary: var(--txt-accent-primary);
+    --text-color-accent-secondary: var(--txt-accent-secondary);
+    --text-color-danger-primary: var(--txt-danger-primary);
+    --text-color-danger-secondary: var(--txt-danger-secondary);
+    --text-color-disabled: var(--txt-disabled);
+    --text-color-icon-accent-primary: var(--txt-icon-accent-primary);
+    --text-color-icon-danger-primary: var(--txt-icon-danger-primary);
+    --text-color-icon-disabled: var(--txt-icon-disabled);
+    --text-color-icon-on-color: var(--txt-icon-on-color);
+    --text-color-icon-placeholder: var(--txt-icon-placeholder);
+    --text-color-icon-secondary: var(--txt-icon-secondary);
+    --text-color-icon-tertiary: var(--txt-icon-tertiary);
+    --text-color-inverse: var(--txt-inverse);
+    --text-color-on-color: var(--txt-on-color);
+    --text-color-on-color-disabled: var(--txt-on-color-disabled);
+    --text-color-placeholder: var(--txt-placeholder);
+    --text-color-primary: var(--txt-primary);
+    --text-color-secondary: var(--txt-secondary);
+    --text-color-success-primary: var(--txt-success-primary);
+    --text-color-tertiary: var(--txt-tertiary);
+  }
+}
+
+@theme inline {
+  --background-color-accent-primary: var(--bg-accent-primary);
+  --background-color-accent-primary-active: var(--bg-accent-primary-active);
+  --background-color-accent-primary-hover: var(--bg-accent-primary-hover);
+  --background-color-danger-primary: var(--bg-danger-primary);
+  --background-color-danger-primary-active: var(--bg-danger-primary-active);
+  --background-color-danger-primary-hover: var(--bg-danger-primary-hover);
+  --background-color-danger-subtle: var(--bg-danger-subtle);
+  --background-color-danger-subtle-active: var(--bg-danger-subtle-active);
+  --background-color-danger-subtle-hover: var(--bg-danger-subtle-hover);
+  --background-color-danger-subtle-selected: var(--bg-danger-subtle-selected);
+  --background-color-inverse: var(--bg-inverse);
+  --background-color-layer-1: var(--bg-layer-1);
+  --background-color-layer-1-hover: var(--bg-layer-1-hover);
+  --background-color-layer-2: var(--bg-layer-2);
+  --background-color-layer-2-active: var(--bg-layer-2-active);
+  --background-color-layer-2-hover: var(--bg-layer-2-hover);
+  --background-color-layer-3: var(--bg-layer-3);
+  --background-color-layer-3-active: var(--bg-layer-3-active);
+  --background-color-layer-3-hover: var(--bg-layer-3-hover);
+  --background-color-layer-disabled: var(--bg-layer-disabled);
+  --background-color-layer-transparent: var(--bg-layer-transparent);
+  --background-color-layer-transparent-active: var(--bg-layer-transparent-active);
+  --background-color-layer-transparent-hover: var(--bg-layer-transparent-hover);
+  --background-color-layer-transparent-selected: var(--bg-layer-transparent-selected);
+  --background-color-scrollbar-thumb: var(--scrollbar-thumb);
+  --background-color-scrollbar-thumb-active: var(--scrollbar-thumb-active);
+  --background-color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+  --background-color-surface-1: var(--bg-surface-1);
+  --border-color-accent-strong: var(--border-accent-strong);
+  --border-color-danger-strong: var(--border-danger-strong);
+  --border-color-disabled: var(--border-disabled);
+  --border-color-icon-tertiary: var(--txt-icon-tertiary);
+  --border-color-strong: var(--border-strong);
+  --border-color-strong-1: var(--border-strong-1);
+  --border-color-subtle: var(--border-subtle);
+  --border-color-subtle-1: var(--border-subtle-1);
+  --ring-color-accent-strong: var(--border-accent-strong);
+  --ring-color-danger-strong: var(--border-danger-strong);
+  --text-color-accent-primary: var(--txt-accent-primary);
+  --text-color-accent-secondary: var(--txt-accent-secondary);
+  --text-color-danger-primary: var(--txt-danger-primary);
+  --text-color-danger-secondary: var(--txt-danger-secondary);
+  --text-color-disabled: var(--txt-disabled);
+  --text-color-icon-accent-primary: var(--txt-icon-accent-primary);
+  --text-color-icon-danger-primary: var(--txt-icon-danger-primary);
+  --text-color-icon-disabled: var(--txt-icon-disabled);
+  --text-color-icon-on-color: var(--txt-icon-on-color);
+  --text-color-icon-placeholder: var(--txt-icon-placeholder);
+  --text-color-icon-secondary: var(--txt-icon-secondary);
+  --text-color-icon-tertiary: var(--txt-icon-tertiary);
+  --text-color-inverse: var(--txt-inverse);
+  --text-color-on-color: var(--txt-on-color);
+  --text-color-on-color-disabled: var(--txt-on-color-disabled);
+  --text-color-placeholder: var(--txt-placeholder);
+  --text-color-fg-primary: var(--txt-primary);
+  --text-color-fg-secondary: var(--txt-secondary);
+  --text-color-success-primary: var(--txt-success-primary);
+  --text-color-tertiary: var(--txt-tertiary);
+}
+
+@theme {
+  --border-width-lg: 2px;
+  --border-width-md: 1.5px;
+  --border-width-sm: 1px;
+  --border-width-xs: 0.5px;
+  --control-gap-2xl: 0.5rem;
+  --control-gap-lg: 0.375rem;
+  --control-gap-md: 0.375rem;
+  --control-gap-sm: 0.25rem;
+  --control-gap-xl: 0.375rem;
+  --control-gap-xs: 0.25rem;
+  --control-glyph-2xl: 1.25rem;
+  --control-glyph-lg: 1rem;
+  --control-glyph-md: 1rem;
+  --control-glyph-sm: 0.875rem;
+  --control-glyph-xl: 1rem;
+  --control-glyph-xs: 0.875rem;
+  --control-height-2xl: 2.5rem;
+  --control-height-lg: 2rem;
+  --control-height-md: 1.75rem;
+  --control-height-sm: 1.5rem;
+  --control-height-xl: 2.25rem;
+  --control-height-xs: 1.25rem;
+  --control-padding-x-lg: 0.75rem;
+  --control-padding-x-md: 0.625rem;
+  --control-padding-x-sm: 0.5rem;
+  --control-padding-x-xs: 0.375rem;
+  --control-radius-2xl: 0.5rem;
+  --control-radius-lg: 0.375rem;
+  --control-radius-md: 0.375rem;
+  --control-radius-sm: 0.375rem;
+  --control-radius-xl: 0.5rem;
+  --control-radius-xs: 0.25rem;
+  --field-inset-2xl: 0.875rem;
+  --field-inset-lg: 0.625rem;
+  --field-inset-md: 0.5rem;
+  --field-inset-xl: 0.75rem;
+  --font-code: var(--font-mono);
+  --font-weight-regular: 450;
+  --popup-width-max: 25rem;
+  --popup-width-min: 12.75rem;
+  --scrollbar-pad: 0.125rem;
+  --scrollbar-track-lg: 0.75rem;
+  --scrollbar-track-md: 0.625rem;
+  --scrollbar-track-sm: 0.5rem;
+  --shadow-overlay-100: 0px 10px 10px -5px rgb(41 47 61 / 0.04), 0px 10px 40px -5px rgb(41 47 61 / 0.04);
+  --shadow-overlay-200: 0px 10px 10px -10px rgb(41 47 61 / 0.04), 0px 30px 60px -12px rgb(41 47 61 / 0.1);
+  --shadow-raised-100: 0px 1px 6px -1px rgb(41 47 61 / 0.03), 0px 1px 4px 0px rgb(41 47 61 / 0.04);
+  --shadow-raised-200: 0px 1px 2px -1px rgb(41 47 61 / 0.06), 0px 1px 3px 0px rgb(41 47 61 / 0.05);
+  --text-10: 0.625rem;
+  --text-11: 0.6875rem;
+  --text-12: 0.75rem;
+  --text-13: 0.8125rem;
+  --text-14: 0.875rem;
+  --text-16: 1rem;
+  --text-20: 1.25rem;
+  --text-body-2xs-regular: var(--text-12);
+  --text-body-2xs-regular--font-weight: var(--font-weight-regular);
+  --text-body-2xs-regular--letter-spacing: var(--tracking-default);
+  --text-body-2xs-regular--line-height: 1.54;
+  --text-body-md-regular: var(--text-16);
+  --text-body-md-regular--font-weight: var(--font-weight-regular);
+  --text-body-md-regular--letter-spacing: var(--tracking-default);
+  --text-body-md-regular--line-height: 1.54;
+  --text-body-sm-medium: var(--text-14);
+  --text-body-sm-medium--font-weight: var(--font-weight-medium);
+  --text-body-sm-medium--letter-spacing: var(--tracking-default);
+  --text-body-sm-medium--line-height: 1.54;
+  --text-body-sm-regular: var(--text-14);
+  --text-body-sm-regular--font-weight: var(--font-weight-regular);
+  --text-body-sm-regular--letter-spacing: var(--tracking-default);
+  --text-body-sm-regular--line-height: 1.54;
+  --text-body-xs-medium: var(--text-13);
+  --text-body-xs-medium--font-weight: var(--font-weight-medium);
+  --text-body-xs-medium--letter-spacing: var(--tracking-default);
+  --text-body-xs-medium--line-height: 1.54;
+  --text-body-xs-regular: var(--text-13);
+  --text-body-xs-regular--font-weight: var(--font-weight-regular);
+  --text-body-xs-regular--letter-spacing: var(--tracking-default);
+  --text-body-xs-regular--line-height: 1.54;
+  --text-body-xs-semibold: var(--text-13);
+  --text-body-xs-semibold--font-weight: var(--font-weight-semibold);
+  --text-body-xs-semibold--letter-spacing: var(--tracking-default);
+  --text-body-xs-semibold--line-height: 1.54;
+  --text-caption-md-medium: var(--text-12);
+  --text-caption-md-medium--font-weight: var(--font-weight-medium);
+  --text-caption-md-medium--letter-spacing: var(--tracking-default);
+  --text-caption-md-medium--line-height: 1.2;
+  --text-caption-md-regular: var(--text-12);
+  --text-caption-md-regular--font-weight: var(--font-weight-regular);
+  --text-caption-md-regular--letter-spacing: var(--tracking-default);
+  --text-caption-md-regular--line-height: 1.2;
+  --text-caption-sm-medium: var(--text-11);
+  --text-caption-sm-medium--font-weight: var(--font-weight-medium);
+  --text-caption-sm-medium--letter-spacing: var(--tracking-default);
+  --text-caption-sm-medium--line-height: 1.2;
+  --text-caption-sm-regular: var(--text-11);
+  --text-caption-sm-regular--font-weight: var(--font-weight-regular);
+  --text-caption-sm-regular--letter-spacing: var(--tracking-default);
+  --text-caption-sm-regular--line-height: 1.2;
+  --text-caption-xs-regular: var(--text-10);
+  --text-caption-xs-regular--font-weight: var(--font-weight-regular);
+  --text-caption-xs-regular--letter-spacing: 0.01em;
+  --text-caption-xs-regular--line-height: 1.2;
+  --text-h4-regular: var(--text-20);
+  --text-h4-regular--font-weight: var(--font-weight-regular);
+  --text-h4-regular--letter-spacing: var(--tracking-default);
+  --text-h4-regular--line-height: 1.2;
+  --tracking-default: 0em;
+
+  --animate-spinner-reveal: spinner-reveal 0.2s ease-out forwards;
+  @keyframes spinner-reveal {
+    0% {
+      opacity: 0;
+      width: 0;
+    }
+    100% {
+      opacity: 1;
+      width: var(--node-size);
+    }
+  }
+  --animate-spinner-conceal: spinner-conceal 0.2s ease-in forwards;
+  @keyframes spinner-conceal {
+    0% {
+      opacity: 1;
+      width: var(--node-size);
+    }
+    100% {
+      opacity: 0;
+      width: 0;
+    }
+  }
+}
+
+@utility scrollbar-sm {
+  --scrollbar-thumb-current: var(--scrollbar-thumb-rest);
+  &:hover {
+    --scrollbar-thumb-current: var(--scrollbar-thumb);
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-current) transparent;
+  }
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-track-sm);
+    height: var(--scrollbar-track-sm);
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: var(--scrollbar-pad) solid transparent;
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: var(--scrollbar-thumb-current);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background-color: var(--scrollbar-thumb-active);
+  }
+}
+
+/* Propel `prose`: only the typography colors (Plane has no typography plugin). */
+@utility prose {
+  --tw-prose-body: var(--text-color-primary);
+  --tw-prose-p: var(--text-color-primary);
+  --tw-prose-headings: var(--text-color-primary);
+  --tw-prose-lead: var(--text-color-primary);
+  --tw-prose-links: var(--text-color-accent-primary);
+  --tw-prose-bold: inherit;
+  --tw-prose-counters: var(--text-color-primary);
+  --tw-prose-bullets: var(--text-color-primary);
+  --tw-prose-hr: var(--text-color-primary);
+  --tw-prose-quotes: var(--text-color-primary);
+  --tw-prose-quote-borders: var(--border-color-subtle);
+  --tw-prose-code: var(--text-color-primary);
+  --tw-prose-pre-code: var(--text-color-primary);
+  --tw-prose-pre-bg: var(--background-color-layer-1);
+  --tw-prose-th-borders: var(--border-color-subtle);
+  --tw-prose-td-borders: var(--border-color-subtle);
+}
+
+/* Plane tailwind-config: swatch of the custom color button in the icon picker. */
+@utility conical-gradient {
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #ff6b00 0deg,
+    #f7ae59 70.5deg,
+    #3f76ff 151.12deg,
+    #05c3ff 213deg,
+    #18914f 289.87deg,
+    #f6f172 329.25deg,
+    #ff6b00 360deg
+  );
+}

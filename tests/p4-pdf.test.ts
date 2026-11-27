@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { extractColorKeyFromCssVariable, resolveColorForPdf, safeCssColor } from '../src/server/pdf/colors'
 import { recoverWithDefault, tryAsync, withTimeoutAndRetry } from '../src/server/pdf/effect-utils'
 import { PdfGenerationError, PdfTimeoutError, mapPdfErrorToHttp } from '../src/server/pdf/errors'

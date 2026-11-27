@@ -1,19 +1,12 @@
 import assert from 'node:assert/strict'
-import { register } from 'node:module'
-import test from 'node:test'
+import { afterAll, beforeAll, test } from 'vitest'
 import * as Y from 'yjs'
 import { PageDocumentService } from '../src/server/collaboration/document'
 import { getBinaryDataFromHtml } from '../src/server/collaboration/codec'
 import { forceCloseDocumentAcrossServers } from '../src/server/collaboration/force-close-handler'
 import { ForceCloseReason } from '../src/server/collaboration/admin-commands'
 
-// `cloudflare:workers` only exists inside the Workers runtime: resolve it to a minimal stub for Node.
-const stub = 'export class DurableObject { constructor(ctx, env) { this.ctx = ctx; this.env = env } }\nexport const env = {}\n'
-const hooks = `export async function resolve(specifier, context, next) {
-  if (specifier === 'cloudflare:workers') return { url: 'data:text/javascript,${encodeURIComponent(stub)}', shortCircuit: true }
-  return next(specifier, context)
-}`
-register(`data:text/javascript,${encodeURIComponent(hooks)}`)
+// `cloudflare:workers` resolves to tests/stubs/cloudflare-workers.ts (vitest.config.ts).
 
 type Row = { id: number; data: ArrayBuffer }
 
@@ -72,7 +65,7 @@ const original = {
   updateProps: PageDocumentService.prototype.updatePageProperties
 }
 
-test.before(() => {
+beforeAll(() => {
   PageDocumentService.prototype.fetchDescriptionBinary = async () => getBinaryDataFromHtml('<p>hello</p>', 'Title')
   PageDocumentService.prototype.fetchDetails = async () => ({ name: 'Title', description_html: '<p>hello</p>' })
   PageDocumentService.prototype.updatePageProperties = async () => undefined
@@ -82,7 +75,7 @@ test.before(() => {
     calls.lastHtml = data.description_html
   }
 })
-test.after(() => Object.assign(PageDocumentService.prototype, {
+afterAll(() => Object.assign(PageDocumentService.prototype, {
   fetchDescriptionBinary: original.fetchBinary,
   fetchDetails: original.fetchDetails,
   updateDescriptionBinary: original.update,

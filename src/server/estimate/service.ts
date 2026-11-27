@@ -5,6 +5,7 @@ import { projectMembers, projects } from '@/db/schema/workspace'
 import { draftIssues, estimatePoints, estimates } from '@/db/schema/planning'
 import { ServiceError } from '@/server/common/errors'
 import { requireWorkspaceRole, ROLE } from '@/server/common/permissions'
+import { assertNumericEstimateValues } from '@/server/estimate/numeric'
 import { toEstimateRead } from '@/server/estimate/presenters'
 import { queryPointsOf, queryProjectEstimates } from '@/server/estimate/queries'
 import { requireProjectAccess } from '@/server/project/permissions'
@@ -69,6 +70,10 @@ export async function createEstimate(
   input: CreateEstimateInput
 ) {
   const { workspace } = await requireProjectAccess(db, actor, slug, projectId, 15)
+  assertNumericEstimateValues(
+    input.estimate.type,
+    input.estimate_points.map(point => point.value)
+  )
   const existing = await db
     .select({ id: estimates.id })
     .from(estimates)
@@ -166,6 +171,10 @@ export async function createEstimatePoints(
   points: import('@/types/planning/schema').EstimatePointInput[]
 ) {
   const estimate = await getEstimate(db, actor, slug, projectId, estimateId, 15)
+  assertNumericEstimateValues(
+    estimate.type,
+    points.map(point => point.value)
+  )
   return db
     .insert(estimatePoints)
     .values(
@@ -189,7 +198,8 @@ export async function updateEstimatePoint(
   pointId: number,
   input: import('@/types/planning/schema').UpdateEstimatePointInput
 ) {
-  await getEstimate(db, actor, slug, projectId, estimateId, 15)
+  const estimate = await getEstimate(db, actor, slug, projectId, estimateId, 15)
+  assertNumericEstimateValues(estimate.type, [input.value])
   const [point] = await db
     .update(estimatePoints)
     .set({ ...input, updatedById: actor.userId })
@@ -317,7 +327,14 @@ export async function bulkUpdateEstimate(
   estimateId: number,
   input: BulkUpdateEstimateInput
 ) {
-  await getEstimate(db, actor, slug, projectId, estimateId, 15)
+  const current = await getEstimate(db, actor, slug, projectId, estimateId, 15)
+  // Every point of the estimate, not just the listed ones: a points estimate must end up all numeric. Nothing is
+  // written before this check, so a rejected request leaves the estimate untouched.
+  const changes = new Map(input.estimate_points.map(point => [point.id, point]))
+  assertNumericEstimateValues(
+    input.estimate?.type ?? current.type,
+    current.points.map(point => changes.get(point.id)?.value ?? point.value)
+  )
   const estimateSet = {
     ...(input.estimate?.name === undefined ? {} : { name: input.estimate.name }),
     ...(input.estimate?.type === undefined ? {} : { type: input.estimate.type })

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 import { getDb } from '../src/db/client'
 import { createLocalD1 } from '../scripts/maintenance/d1-shim'
 import { createProjectBulkAsset } from '../src/server/asset/v2'

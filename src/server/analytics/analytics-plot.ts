@@ -4,6 +4,7 @@ import { ISSUE_COUNTABLE, ISSUE_LIVE, projectUsesPoints } from '@/server/cycle/q
 import { raw } from '@/server/analytics/queries'
 import { VALID_ANALYTICS_FIELDS, VALID_YAXIS, type AnalyticsField } from '@/types/reporting/p3-analytics-schema'
 import type { LancityDb } from '@/types/database/schema'
+import { estimateToNumber, numericEstimateSql } from '@/server/estimate/numeric'
 
 export { VALID_ANALYTICS_FIELDS, VALID_YAXIS }
 
@@ -102,7 +103,7 @@ export async function buildGraphPlot(
   const x = extractAxis(xAxis, 'ax')
   const seg = segment ? extractAxis(segment, 'sg') : null
   const estimate = yAxis === 'estimate'
-  const measure = estimate ? sql`sum(cast(ey.value as real)) as estimate` : sql`count(*) as count`
+  const measure = estimate ? sql`sum(${numericEstimateSql('ey.value')}) as estimate` : sql`count(*) as count`
   const rows = await db.all<PlotRow>(
     sql`select ${x.dimension} as dimension, ${seg ? sql`${seg.dimension} as segment,` : sql``} ${measure}
       from issues ${x.join ?? sql``} ${seg?.join ?? sql``}
@@ -166,8 +167,8 @@ export async function burndownPlot(
         join estimate_points ep on ep.id = i.estimate_point_id
         where ${inModule} order by d`
     )
-    total = rows.reduce((sum, row) => sum + Number(row.value), 0)
-    completed = rows.filter(row => row.d).map(row => ({ date: row.d as string, amount: Number(row.value) }))
+    total = rows.reduce((sum, row) => sum + estimateToNumber(row.value), 0)
+    completed = rows.filter(row => row.d).map(row => ({ date: row.d as string, amount: estimateToNumber(row.value) }))
   } else {
     const [count] = await db.all<{ n: number }>(
       sql`select count(*) as n from module_issues mi join issues i on i.id = mi.issue_id and i.project_id = mi.project_id

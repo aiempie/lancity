@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { openTargetDatabase } from '../scripts/plane-import/target-schema.ts'
-import test from 'node:test'
+import { test } from 'vitest'
 import { ISSUE_JOB } from '../src/server/issue/activity/index.ts'
 import { extractIds, issueActivity, toId } from '../src/server/issue/jobs/issue-activities.ts'
 import { archiveAndCloseOldIssues, unsnoozeExpiredIntakeIssues } from '../src/server/issue/jobs/issue-automation.ts'

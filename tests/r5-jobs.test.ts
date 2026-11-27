@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { openTargetDatabase } from '../scripts/plane-import/target-schema'
-import test from 'node:test'
+import { test } from 'vitest'
 import { getDb } from '../src/db/client'
 import { createLocalD1 } from '../scripts/maintenance/d1-shim'
 import { claimActivityRows } from '../src/server/common/job-claims'

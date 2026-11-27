@@ -50,3 +50,17 @@ Không có. Activity dùng queue `JOBS_QUEUE` có sẵn qua `enqueueIssueActivit
 4. `deleteEstimatePoint` không kiểm tra điểm thay thế thuộc cùng estimate ở mức DB; service kiểm tra trong `estimate.points`, và FK ghép `(estimate_point_id, project_id)` bảo vệ cùng project.
 5. Danh sách điểm nay sắp xếp theo `key` (Plane sắp theo `value`).
 6. Test `tests/p2-estimate.integration.mjs` chưa chạy; giả định `POST /issues` chỉ cần `name`.
+
+## (e) Đồng bộ Plane 1.5.1: điểm estimate kiểu `points` phải là số (#9939)
+
+Nguồn: `apps/api/plane/utils/estimate.py` và các view estimate/cycle/module/analytics của Plane (commit `b84d6c08fe`). Không có PD mới trong checklist cho thay đổi này; các PD-0525, 0527, 0529, 0530 đổi hành vi như sau.
+
+- [`src/server/estimate/numeric.ts`](../../../src/server/estimate/numeric.ts): `isNumericEstimate` (số thập phân không âm, cho phép khoảng trắng hai đầu, không dấu, mũ, `nan`, hex, gạch dưới), `estimateToNumber` (giá trị không phải số tính là 0) và `numericEstimateExpr/Sql/OrZeroSql` (cùng quy tắc bằng GLOB của SQLite, giá trị không phải số thành NULL nên `sum` bỏ qua). Test đối chiếu hai bản trên cùng danh sách chuỗi.
+- **Ghi.** Lỗi 400 `VALIDATION_ERROR`, thông báo `Value must be a number for a points estimate`.
+  - `createEstimate`/`bulkCreateEstimate` (PD-0525) kiểm tra trước khi ghi nên không để lại estimate rỗng.
+  - `createEstimatePoints`/`createEstimatePoint` (PD-0529) và `updateEstimatePoint` (PD-0530) kiểm tra theo `type` của estimate.
+  - `bulkUpdateEstimate` (PD-0527) kiểm tra **mọi** điểm của estimate sau khi áp payload và kiểu mới (`estimate.type`), rồi mới ghi. Đổi estimate sang `points` khi còn điểm không phải số thì bị từ chối, không lưu gì.
+  - Estimate `categories` vẫn nhận mọi chuỗi.
+- **Đọc.** `cast(ep.value as real)` của SQLite đọc `"2 pts"` thành 2 và `"1e3"` thành 1000, lệch với Plane (tính là 0). Đã thay ở [`analytics-plot.ts`](../../../src/server/analytics/analytics-plot.ts), [`cycle/queries.ts`](../../../src/server/cycle/queries.ts), [`cycle/progress.ts`](../../../src/server/cycle/progress.ts) và [`module/queries.ts`](../../../src/server/module/queries.ts). Hai biểu đồ burndown (analytics, cycle) cộng bằng `estimateToNumber` thay cho `Number(...)` vì `Number("M = 2")` là `NaN`. Chỗ SQL cũ dùng `else 0` thì giữ 0 bằng `coalesce`.
+- Cột `value` của dữ liệu cũ không bị sửa. Giá trị không phải số trong estimate `points` có sẵn chỉ bị bỏ khỏi tổng.
+- **Test.** [`tests/estimate-numeric.test.ts`](../../../tests/estimate-numeric.test.ts) (SQLite trong bộ nhớ, 7 ca) và ca mới trong `tests/p2-estimate.integration.mjs` (cần Worker local, chưa chạy). Ca cũ của integration test dùng giá trị `one` cho estimate `points` nên đổi thành `10`.

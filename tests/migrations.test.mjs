@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { DatabaseSync } from 'node:sqlite'
-import test from 'node:test'
+import { test } from 'vitest'
 import { resetProjectDeployBoardIdentity } from '../scripts/db/import-plane/0125-reset-project-deploy-board-identity.ts'
 import { completeLegacyTour } from '../scripts/db/import-plane/complete-legacy-tour.ts'
 import { normalizeIssueHistory } from '../scripts/db/import-plane/normalize-history.ts'

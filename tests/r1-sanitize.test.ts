@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { test } from 'vitest'
 import { sanitizeHtml } from '../src/server/issue/comment-html'
 import { assertSafeDescriptionHtml, sanitizeDescriptionHtml } from '../src/server/issue/sequence'
 import { validateHtmlContent } from '../src/server/page/content-validator'

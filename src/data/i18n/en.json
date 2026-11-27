@@ -37,5 +37,241 @@
     "googleLinkFailed": "We couldn't link Google. Try again.",
     "googleLinkSameEmail": "We couldn't link Google. Use a Google account with the same email address.",
     "signOutFailed": "We couldn't sign you out. Try again."
+  },
+  "editor": {
+    "emojiPicker": {
+      "search": "Search",
+      "emoji": "Emoji",
+      "icon": "Icon",
+      "hexInput": "Enter a HEX color",
+      "contrastNotice": "Colors will be adjusted to ensure sufficient contrast."
+    },
+    "slashCommands": {
+      "sections": {
+        "colors": "Colors",
+        "backgroundColors": "Background colors"
+      },
+      "text": {
+        "title": "Text",
+        "description": "Just start typing with plain text."
+      },
+      "h1": {
+        "title": "Heading 1",
+        "description": "Big section heading."
+      },
+      "h2": {
+        "title": "Heading 2",
+        "description": "Medium section heading."
+      },
+      "h3": {
+        "title": "Heading 3",
+        "description": "Small section heading."
+      },
+      "h4": {
+        "title": "Heading 4",
+        "description": "Small section heading."
+      },
+      "h5": {
+        "title": "Heading 5",
+        "description": "Small section heading."
+      },
+      "h6": {
+        "title": "Heading 6",
+        "description": "Small section heading."
+      },
+      "numberedList": {
+        "title": "Numbered list",
+        "description": "Create a numbered list."
+      },
+      "bulletedList": {
+        "title": "Bulleted list",
+        "description": "Create a bulleted list."
+      },
+      "todoList": {
+        "title": "To-do list",
+        "description": "Create a to-do list."
+      },
+      "table": {
+        "title": "Table",
+        "description": "Create a table."
+      },
+      "quote": {
+        "title": "Quote",
+        "description": "Capture a quote."
+      },
+      "code": {
+        "title": "Code",
+        "description": "Capture a code snippet."
+      },
+      "callout": {
+        "title": "Callout",
+        "description": "Insert a callout."
+      },
+      "divider": {
+        "title": "Divider",
+        "description": "Visually divide blocks."
+      },
+      "emoji": {
+        "title": "Emoji",
+        "description": "Insert an emoji."
+      },
+      "image": {
+        "title": "Image",
+        "description": "Insert an image."
+      },
+      "defaultTextColor": "Default",
+      "defaultBackground": "Default background",
+      "changeTextColor": "Change text color",
+      "changeBackgroundColor": "Change background color",
+      "workItem": {
+        "title": "Work item",
+        "description": "Embed a work item."
+      }
+    },
+    "blocks": {
+      "text": "Text",
+      "heading1": "Heading 1",
+      "heading2": "Heading 2",
+      "heading3": "Heading 3",
+      "heading4": "Heading 4",
+      "heading5": "Heading 5",
+      "heading6": "Heading 6",
+      "bulletedList": "Bulleted list",
+      "numberedList": "Numbered list",
+      "todoList": "To-do list",
+      "quote": "Quote",
+      "code": "Code",
+      "table": "Table",
+      "image": "Image",
+      "divider": "Divider",
+      "multiple": "Multiple"
+    },
+    "marks": {
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "strikethrough": "Strikethrough",
+      "link": "Link",
+      "color": "Color",
+      "backgroundColor": "Background color",
+      "textAlign": "Text align"
+    },
+    "colors": {
+      "gray": "Gray",
+      "peach": "Peach",
+      "pink": "Pink",
+      "orange": "Orange",
+      "green": "Green",
+      "lightBlue": "Light blue",
+      "darkBlue": "Dark blue",
+      "purple": "Purple",
+      "color": "Color",
+      "textColors": "Text colors",
+      "backgroundColors": "Background colors",
+      "textColorOf": "{color} text color",
+      "backgroundColorOf": "{color} background color",
+      "clearTextColor": "Clear text color",
+      "clearBackgroundColor": "Clear background color"
+    },
+    "alignment": {
+      "group": "Text alignment",
+      "left": "Align left",
+      "center": "Align center",
+      "right": "Align right"
+    },
+    "fonts": {
+      "sansSerif": "Sans serif",
+      "serif": "Serif",
+      "mono": "Mono"
+    },
+    "link": {
+      "label": "Link",
+      "url": "Link URL",
+      "placeholder": "Enter or paste a link",
+      "remove": "Remove link",
+      "apply": "Apply link",
+      "copy": "Copy link",
+      "edit": "Edit link",
+      "urlLabel": "URL",
+      "urlPlaceholder": "Enter or paste a URL",
+      "textLabel": "Text",
+      "textPlaceholder": "Enter text to display",
+      "invalidUrl": "Enter a valid URL."
+    },
+    "toolbar": {
+      "formatting": "Formatting toolbar",
+      "textFormatting": "Text formatting"
+    },
+    "blockMenu": {
+      "delete": "Delete",
+      "duplicate": "Duplicate",
+      "fitToWidth": "Fit to width"
+    },
+    "table": {
+      "insertLeft": "Insert left",
+      "insertRight": "Insert right",
+      "insertAbove": "Insert above",
+      "insertBelow": "Insert below",
+      "duplicate": "Duplicate",
+      "clearContents": "Clear contents",
+      "delete": "Delete",
+      "headerColumn": "Header column",
+      "headerRow": "Header row",
+      "columnOptions": "Column options",
+      "rowOptions": "Row options",
+      "insertColumns": "Insert columns",
+      "insertRows": "Insert rows"
+    },
+    "image": {
+      "download": "Download",
+      "downloadImage": "Download image",
+      "align": "Align",
+      "alignImage": "Align image",
+      "alignment": "Image alignment",
+      "alignImageTo": "Align image: {alignment}",
+      "viewFullScreen": "View in full screen",
+      "viewImageFullScreen": "View image in full screen",
+      "controls": "Image controls",
+      "viewer": "Full-screen image viewer",
+      "closeViewer": "Close image viewer",
+      "preview": "Preview",
+      "viewerControls": "Image viewer controls",
+      "zoom": "Image zoom",
+      "zoomOut": "Zoom out",
+      "zoomIn": "Zoom in",
+      "openInNewTab": "Open image in new tab",
+      "errorLoading": "Couldn't load the image",
+      "uploading": "Uploading…",
+      "dropHere": "Drop the image here",
+      "add": "Add an image",
+      "choose": "Choose image",
+      "retry": "Retry",
+      "retryDuplication": "Retry copying the image",
+      "noFile": "No file selected. Choose a file to upload.",
+      "invalidType": "This file type isn't supported.",
+      "tooLarge": "The file is too large. Choose a file smaller than {size} MB."
+    },
+    "mention": {
+      "loading": "Loading…",
+      "noResults": "No results",
+      "unknownUser": "Unknown user"
+    },
+    "title": {
+      "placeholder": "Untitled"
+    },
+    "ai": {
+      "handle": "AI actions"
+    },
+    "placeholder": {
+      "default": "Press '/' for commands…",
+      "heading": "Heading {level}"
+    },
+    "code": {
+      "copy": "Copy code",
+      "copied": "Code copied"
+    },
+    "emoji": {
+      "noResults": "No emojis found"
+    }
   }
 }

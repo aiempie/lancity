@@ -1,0 +1,35 @@
+import React from 'react'
+import { LUCIDE_ICONS_LIST } from '../lucide-icons'
+
+type LucideIconsListProps = {
+  onChange: (value: { name: string; color: string }) => void
+  activeColor: string
+  query: string
+}
+
+export function LucideIconsList(props: LucideIconsListProps) {
+  const { query, onChange, activeColor } = props
+
+  const filteredArray = LUCIDE_ICONS_LIST.filter(icon => icon.name.toLowerCase().includes(query.toLowerCase()))
+
+  return (
+    <>
+      {filteredArray.map(icon => (
+        <button
+          key={icon.name}
+          type='button'
+          aria-label={icon.name}
+          className='grid h-9 w-9 place-items-center rounded-sm text-body-md-regular select-none hover:bg-layer-1'
+          onClick={() => {
+            onChange({
+              name: icon.name,
+              color: activeColor
+            })
+          }}
+        >
+          <icon.element aria-hidden='true' style={{ color: activeColor }} className='size-4' />
+        </button>
+      ))}
+    </>
+  )
+}
